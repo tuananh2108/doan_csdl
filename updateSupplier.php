@@ -1,5 +1,20 @@
 <?php ob_start();?>
 <?php include('partials/header.php'); ?>
+<?php
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM v_list_NHA_CUNG_CAP WHERE MaNCC = '$id'";
+    $stmt = sqlsrv_query($conn, $sql);
+    if($stmt==true) {
+            $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+            $nameSupplier = $row['TenNCC'];
+            $emailSupplier = $row['Email'];
+            $addressSupplier = $row['DiaChi'];
+            $phoneNumber = $row['DienThoai'];
+    }
+    else {
+        header("location:".SITEURL.'manageSupplier.php');
+    }
+?>
 
         <!--**********************************
             Content body start
@@ -10,7 +25,7 @@
                     <div class="col-xl-12 col-xxl-12">
                         <div class="card">
                             <div class="card-header page-titles">
-                                <h4 class="card-title">Nhà cung cấp > Thêm mới</h4>
+                                <h4 class="card-title">Nhà cung cấp > Cập nhật</h4>
                             </div>
                             <div class="card-body">
                                 <form action="" method="POST" class="step-form-horizontal">
@@ -19,29 +34,30 @@
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Tên nhà cung cấp*</label>
-                                                    <input type="text" name="nameSupplier" class="form-control">
+                                                    <input type="text" name="nameSupplier" value="<?php echo $nameSupplier; ?>" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Email*</label>
-                                                    <input type="email" name="emailSupplier" class="form-control">
+                                                    <input type="email" name="emailSupplier" value="<?php echo $emailSupplier; ?>" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-lg-8 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Địa chỉ*</label>
-                                                    <input type="text" name="addressSupplier" class="form-control">
+                                                    <input type="text" name="addressSupplier" value="<?php echo $addressSupplier; ?>" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Số điện thoại*</label>
-                                                    <input type="text" name="phoneNumber" class="form-control">
+                                                    <input type="text" name="phoneNumber" value="<?php echo $phoneNumber; ?>" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <input type="submit" name="submit" value="Thêm mới" class="btn btn-primary mb-2">
+                                                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                                <input type="submit" name="submit" value="Cập nhật" class="btn btn-primary mb-2">
                                             </div>
                                         </div>
                                     </section>
@@ -60,19 +76,20 @@
 <?php
     if(isset($_POST['submit']))
     {
+        $id = $_POST['id'];
         $nameSupplier = $_POST['nameSupplier'];
         $emailSupplier = $_POST['emailSupplier'];
         $addressSupplier = $_POST['addressSupplier'];
         $phoneNumber = $_POST['phoneNumber'];
-        $sql = "{call sp_insert_NHA_CUNG_CAP(N'$nameSupplier', N'$addressSupplier', '$emailSupplier', '$phoneNumber')}";
+        $sql = "{call sp_update_NHA_CUNG_CAP('$id', N'$nameSupplier', N'$addressSupplier', '$emailSupplier', '$phoneNumber')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
-            $_SESSION['add'] = "Thêm mới thành công!";
+            $_SESSION['add'] = "Cập nhật thành công!";
             header('location:'.SITEURL.'manageSupplier.php');
         }
         else {
-            $_SESSION['add'] = "Không thêm mới thành công!";
+            $_SESSION['add'] = "Không cập nhật thành công!";
             header('location:'.SITEURL.'addSupplier.php');
         }
         sqlsrv_close($conn);

@@ -2,7 +2,7 @@
 <?php include('partials/header.php'); ?>
 <?php
     $id = $_GET['id'];
-    $sql = "SELECT * FROM LOAI_HANG_HOA WHERE MaLoai = '$id'";
+    $sql = "SELECT * FROM v_list_LOAI_HANG_HOA WHERE MaLoai = '$id'";
     $stmt = sqlsrv_query($conn, $sql);
     if($stmt==true) {
             $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);

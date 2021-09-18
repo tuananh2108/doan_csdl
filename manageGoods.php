@@ -16,6 +16,7 @@
                                     <table id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
+                                                <th>#</th>
                                                 <th>Tên hàng hóa</th>
                                                 <th>Đơn vị</th>
                                                 <th>Xuất xứ</th>
@@ -25,26 +26,53 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Mì tôm hảo hảo</td>
-                                                <td>Thùng</td>
-                                                <td>Việt Nam</td>
-                                                <td>120.000VNĐ</td>
-                                                <td>Mì tôm</td>
-                                                <td>
-                                                    <span>
-                                                        <a href="#" class="mr-4" data-toggle="tooltip"
-                                                            data-placement="top" title="Cập nhật"><i
-                                                                class="fa fa-pencil color-muted"></i></a>
-                                                        <a href="#" data-toggle="tooltip"
-                                                            data-placement="top" title="Xóa"><i
-                                                                class="fa fa-close color-danger"></i></a>
-                                                    </span>
-                                                </td>
-                                            </tr>
+                                        <?php
+                                            $sql = "SELECT * FROM v_list_HANG_HOA";
+                                            $stmt = sqlsrv_query($conn, $sql);
+                                            if( $stmt === false)
+                                            {  
+                                                echo "Error in query preparation/execution.\n";  
+                                                die( print_r( sqlsrv_errors(), true));  
+                                            }
+                                            else {
+                                                $sn = 1;
+                                                while($rows = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC))
+                                                {
+                                                    $id = $rows['MaHH'];
+                                                    $nameGoods = $rows['TenHH'];
+                                                    $unitGoods = $rows['DonVi'];
+                                                    $origin = $rows['XuatXu'];
+                                                    $priceGoods = $rows['DonGia'];
+                                                    $category = $rows['TenLoai'];
+                                                    ?>
+                                                        <tr>
+                                                            <td><?php echo $sn++; ?></td>
+                                                            <td><?php echo $nameGoods; ?></td>
+                                                            <td><?php echo $unitGoods; ?></td>
+                                                            <td><?php echo $origin; ?></td>
+                                                            <td><?php echo $priceGoods; ?> VNĐ</td>
+                                                            <td><?php echo $category; ?></td>
+                                                            <td>
+                                                                <span>
+                                                                    <a href="<?php echo SITEURL; ?>updateGoods.php?id=<?php echo $id; ?>" class="mr-4" data-toggle="tooltip"
+                                                                        data-placement="top" title="Sửa"><i
+                                                                            class="fa fa-pencil color-muted"></i></a>
+                                                                    <a href="<?php echo SITEURL; ?>deleteGoods.php?id=<?php echo $id; ?>" data-toggle="tooltip"
+                                                                        data-placement="top" title="Xóa"><i
+                                                                            class="fa fa-close color-danger"></i></a>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    <?php
+                                                }
+                                            }
+                                            sqlsrv_free_stmt($stmt);
+                                            sqlsrv_close($conn);
+                                        ?>
                                         </tbody>
                                         <tfoot>
                                             <tr>
+                                                <th>#</th>
                                                 <th>Tên hàng hóa</th>
                                                 <th>Đơn vị</th>
                                                 <th>Xuất xứ</th>
