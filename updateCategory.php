@@ -22,7 +22,7 @@
                     <div class="col-xl-12 col-xxl-12">
                         <div class="card">
                             <div class="card-header page-titles">
-                                <h4 class="card-title">Loại hàng hóa</h4>
+                                <h4 class="card-title">Loại hàng hóa > Cập nhật</h4>
                             </div>
                             <div class="card-body">
                                 <form action="" method="POST" class="step-form-horizontal">

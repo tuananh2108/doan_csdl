@@ -1,5 +1,22 @@
 <?php ob_start();?>
 <?php include('partials/header.php'); ?>
+<?php
+    $idMaHDN = $_GET['id'];
+    $idMaHH = $_GET['idHH'];
+    $sql = "SELECT * FROM v_list_ct_HOA_DON_NHAP WHERE MaHDN = $idMaHDN AND MaHH = $idMaHH";
+    $stmt = sqlsrv_query($conn, $sql);
+    if($stmt==true) {
+            $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+            $SoLuong = $row['SoLuong'];
+            $DonGia = $row['DonGia'];
+            $NgaySanXuat = $row['NgaySanXuat'];
+            $HanSuDung = $row['HanSuDung'];
+            $GhiChu = $row['GhiChu'];
+    }
+    else {
+        header("location:".SITEURL.'addDetailImportInvoice.php');
+    }
+?>
 
         <!--**********************************
             Content body start
@@ -86,10 +103,10 @@
                                                                 $stmt = sqlsrv_query($conn, $sql);
                                                                 if($stmt==true) {
                                                                     while($rows = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)){
-                                                                        $MaHH2 = $rows['MaHH'];
-                                                                        $TenHH2 = $rows['TenHH'];
+                                                                        $MaHH = $rows['MaHH'];
+                                                                        $TenHH = $rows['TenHH'];
                                                                         ?>
-                                                                            <option value="<?php echo $MaHH2; ?>"><?php echo $TenHH2; ?></option>
+                                                                            <option <?php if($MaHH==$idMaHH){echo "selected";} ?> value="<?php echo $MaHH; ?>"><?php echo $TenHH; ?></option>
                                                                         <?php
                                                                     }
                                                                 }
@@ -101,14 +118,14 @@
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Số lượng*</label>
-                                                    <input type="number" name="SoLuong" class="form-control" min="0" required>
+                                                    <input type="number" name="SoLuong" value="<?php echo $SoLuong; ?>" class="form-control" min="0" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Đơn giá*</label>
                                                     <div class="input-group">
-                                                        <input type="number" name="DonGia" class="form-control" required>
+                                                        <input type="number" name="DonGia" value="<?php echo $DonGia; ?>" class="form-control" required>
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">0.00</span>
                                                             <span class="input-group-text">VNĐ</span>
@@ -119,23 +136,23 @@
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Ngày sản xuất*</label>
-                                                    <input type="date" name="NgaySanXuat" class="form-control">
+                                                    <input type="date" name="NgaySanXuat" value="<?php echo $NgaySanXuat->format('Y-m-d'); ?>" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Hạn sử dụng*</label>
-                                                    <input type="date" name="HanSuDung" class="form-control">
+                                                    <input type="date" name="HanSuDung" value="<?php echo $HanSuDung->format('Y-m-d'); ?>" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Ghi chú*</label>
-                                                    <textarea name="GhiChu" class="form-control" cols="30" rows="10"></textarea>
+                                                    <textarea name="GhiChu" class="form-control" cols="30" rows="10"><?php echo $GhiChu; ?></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <input type="submit" name="submit" value="Thêm mới" class="btn btn-primary mb-2">
+                                                <input type="submit" name="submit" value="Cập nhật" class="btn btn-primary mb-2">
                                                 <a href="<?php echo SITEURL; ?>addImportInvoice.php" class="btn btn-primary mb-2">Hoàn tất</a>
                                             </div>
                                         </div>
@@ -161,15 +178,15 @@
         $NgaySanXuat = $_POST['NgaySanXuat'];
         $HanSuDung = $_POST['HanSuDung'];
         $GhiChu = $_POST['GhiChu'];
-        $sql = "{call sp_insert_ct_HOA_DON_NHAP('$MaHDN', '$MaHH', '$SoLuong', '$DonGia', '$NgaySanXuat', '$HanSuDung', N'$GhiChu')}";
+        $sql = "{call sp_update_ct_HOA_DON_NHAP('$MaHDN', '$MaHH', '$SoLuong', '$DonGia', '$NgaySanXuat', '$HanSuDung', N'$GhiChu')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
-            $_SESSION['add'] = "Thêm mới thành công!";
+            $_SESSION['update'] = "Cập nhật thành công!";
             header('location:'.SITEURL.'addDetailImportInvoice.php?id='.$MaHDN);
         }
         else {
-            $_SESSION['add'] = "Không thêm mới thành công!";
+            $_SESSION['update'] = "Không Cập nhật thành công!";
             header('location:'.SITEURL.'addDetailImportInvoice.php?id='.$MaHDN);
         }
         sqlsrv_close($conn);

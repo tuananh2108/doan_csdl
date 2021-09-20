@@ -42,7 +42,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <!-- <input type="submit" name="submit" value="Submit" id="btnNext" class="btn btn-primary mb-2"> -->
-                                                <a href="./addDetailExportInvoice.php" class="btn btn-primary mb-2">Thêm chi tiêt</a>
+                                                <a href="./addDetailExportInvoice.php" class="btn btn-primary mb-2">Thêm chi tiết</a>
                                             </div>
                                         </div>
                                     </section>

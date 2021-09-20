@@ -1,5 +1,20 @@
 <?php ob_start();?>
 <?php include('partials/header.php'); ?>
+<?php
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM v_list_HOA_DON_NHAP WHERE MaHDN = $id";
+    $stmt = sqlsrv_query($conn, $sql);
+    if($stmt==true) {
+            $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+            $MaNCC = $row['MaNCC'];
+            $NgayNhap = $row['NgayNhap'];
+            $TinhTrang = $row['TinhTrang'];
+            $GhiChu = $row['GhiChu'];
+    }
+    else {
+        header("location:".SITEURL.'manageImportInvoice.php');
+    }
+?>
 
         <!--**********************************
             Content body start
@@ -22,14 +37,14 @@
                                                     <label class="text-label">Nhà cung cấp*</label>
                                                         <select name="MaNCC" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                                                             <?php
-                                                                $sql = "SELECT * FROM v_list_NHA_CUNG_CAP";
-                                                                $stmt = sqlsrv_query($conn, $sql);
-                                                                if($stmt==true) {
-                                                                    while($rows = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)){
+                                                                $sql1 = "SELECT * FROM v_list_NHA_CUNG_CAP";
+                                                                $stmt1 = sqlsrv_query($conn, $sql1);
+                                                                if($stmt1==true) {
+                                                                    while($rows = sqlsrv_fetch_array($stmt1, SQLSRV_FETCH_ASSOC)){
                                                                         $idNCC = $rows['MaNCC'];
                                                                         $TenNCC = $rows['TenNCC'];
                                                                         ?>
-                                                                            <option value="<?php echo $idNCC; ?>"><?php echo $TenNCC; ?></option>
+                                                                            <option <?php if($idNCC==$MaNCC){echo "selected";} ?> value="<?php echo $idNCC; ?>"><?php echo $TenNCC; ?></option>
                                                                         <?php
                                                                     }
                                                                 }
@@ -37,32 +52,32 @@
                                                         </select>
                                                 </div>
                                             </div>
-                                            <!-- <div class="col-lg-3 mb-4">
+                                            <div class="col-lg-3 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Ngày Nhập*</label>
-                                                    <input type="date" name="" class="form-control">
+                                                    <input type="date" name="NgayNhap" value="<?php echo $NgayNhap->format("Y-m-d"); ?>" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-lg-3 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Tình trạng*</label>
                                                     <div class="input-group" style="margin-top:10px;">
-                                                        <input type="checkbox" class="css-control-input mr-2">
+                                                        <input <?php if($TinhTrang==1){echo 'checked';} ?> type="checkbox" name="TinhTrang" value="<?php echo $TinhTrang; ?>" class="css-control-input mr-2">
                                                         <span>Đã thanh toán</span>
                                                     </div>
                                                 </div>
-                                            </div> -->
+                                            </div>
                                             <div class="col-lg-12 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Ghi chú*</label>
                                                     <div class="input-group">
                                                         <!-- <input type="text" name="phoneNumber" class="form-control" required> -->
-                                                        <textarea name="GhiChu" class="form-control" cols="30" rows="10"></textarea>
+                                                        <textarea name="GhiChu" class="form-control" cols="30" rows="10"><?php echo $GhiChu; ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <input type="submit" name="submit" value="Thêm chi tiết" class="btn btn-primary mb-2">
+                                                <input type="submit" name="submit" value="Cập nhật chi tiết" class="btn btn-primary mb-2">
                                             </div>
                                         </div>
                                     </section>
@@ -81,24 +96,22 @@
 <?php
     if(isset($_POST['submit']))
     {
+        $MaHDN = $_GET['id'];
         $MaNCC = $_POST['MaNCC'];
+        $NgayNhap = $_POST['NgayNhap'];
+        if(isset($_POST['TinhTrang'])) {
+            $TinhTrang = 1;
+        }
+        else {
+            $TinhTrang = $_POST['TinhTrang'];
+        }
         $GhiChu = $_POST['GhiChu'];
-        $sql = "{call sp_insert_HOA_DON_NHAP('$MaNCC', N'$GhiChu')}";
+        $sql = "{call sp_update_HOA_DON_NHAP('$MaHDN', '$NgayNhap', '$MaNCC', '$TinhTrang', N'$GhiChu')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
-            $sql2 = "SELECT MAX(MaHDN) AS maHDN FROM HOA_DON_NHAP";
-            $stmt2 = sqlsrv_query($conn, $sql2);
-            if($stmt2==true) {
-                $row2 = sqlsrv_fetch_array($stmt2, SQLSRV_FETCH_ASSOC);
-                $MaHDN = $row2['maHDN'];
-                $_SESSION['add'] = "Thêm mới thành công!";
-                header('location:'.SITEURL.'addDetailImportInvoice.php?id='.$MaHDN);
-            }
-            else {
-                $_SESSION['add'] = "Không thêm mới thành công!";
-                header('location:'.SITEURL.'addImportInvoice.php');
-            }
+            $_SESSION['add'] = "Thêm mới thành công!";
+            header('location:'.SITEURL.'addDetailImportInvoice.php?id='.$MaHDN);
         }
         else {
             $_SESSION['add'] = "Không thêm mới thành công!";

@@ -9,7 +9,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Hóa đơn nhập</h4>
+                                <h4 class="card-title">Hàng hóa hỏng</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -18,9 +18,9 @@
                                             <tr>
                                                 <th>Tên hàng hóa</th>
                                                 <th>Mã hóa đơn</th>
-                                                <th>Ngày nhập</th>
+                                                <th>Ngày hỏng</th>
                                                 <th>Số lượng</th>
-                                                <th>Đơn giá</th>
+                                                <th>Mô tả</th>
                                                 <th>Chức năng</th>
                                             </tr>
                                         </thead>
@@ -30,7 +30,7 @@
                                                 <td>1</td>
                                                 <td>14/05/2020</td>
                                                 <td>61</td>
-                                                <td>120.000VNĐ</td>
+                                                <td>Hết hạn</td>
                                                 <td>
                                                     <span>
                                                         <a href="#" class="mr-4" data-toggle="tooltip"
@@ -47,9 +47,9 @@
                                             <tr>
                                                 <th>Tên hàng hóa</th>
                                                 <th>Mã hóa đơn</th>
-                                                <th>Ngày nhập</th>
+                                                <th>Ngày hỏng</th>
                                                 <th>Số lượng</th>
-                                                <th>Đơn giá</th>
+                                                <th>Mô tả</th>
                                                 <th>Chức năng</th>
                                             </tr>
                                         </tfoot>
