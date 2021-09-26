@@ -1,7 +1,21 @@
 <?php ob_start();?>
 <?php include('partials/header.php'); ?>
 <?php
-    $idMaHH = $_POST['MaHH'];
+    $idMaHDX = $_GET['id'];
+    $idMaHDN = $_GET['MaHDN'];
+    $idMaHH = $_GET['MaHH'];
+    $sql = "SELECT * FROM v_list_ct_HOA_DON_XUAT WHERE MaHDX = $idMaHDX AND MaHDN = $idMaHDN AND MaHH = $idMaHH";
+    $stmt = sqlsrv_query($conn, $sql);
+    if($stmt==true) {
+            $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+            $TenHH = $row['TenHH'];
+            $SoLuong = $row['SoLuong'];
+            $DonGia = $row['DonGia'];
+            $GhiChu = $row['GhiChu'];
+    }
+    else {
+        header("location:".SITEURL.'addDetailExportInvoice.php');
+    }
 ?>
 
         <!--**********************************
@@ -72,64 +86,32 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <form method="POST" name="f1">
-                                    <div class="row">
-                                        <div class="col-lg-6 mb-4">
-                                            <div class="form-group">
-                                                <label class="text-label">Tên hàng hóa hỏng*</label>
-                                                    <select class="custom-select mr-sm-2" name="MaHH" onchange="f1.submit();">
-                                                        <option value="null">-- Lựa chọn tên hàng hóa --</option>
-                                                        <?php
-                                                            $sql = "SELECT * FROM v_list_LO_HANG";
-                                                            $stmt = sqlsrv_query($conn, $sql);
-                                                            if($stmt==true) {
-                                                                while($rows = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)){
-                                                                    $MaHH = $rows['MaHH'];
-                                                                    $TenHH = $rows['TenHH'];
-                                                                    ?>
-                                                                        <option <?php if($MaHH == $idMaHH){echo 'selected';} ?> value="<?php echo $MaHH; ?>"><?php echo $TenHH; ?></option>
-                                                                    <?php
-                                                                }
-                                                            }
-                                                        ?>
-                                                    </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
                                 <form method="POST">
                                     <section>
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Mã hóa đơn nhập*</label>
-                                                    <select class="custom-select mr-sm-2" name="MaHDN">
-                                                        <?php
-                                                            $sql1 = "SELECT * FROM v_list_LO_HANG WHERE MaHH = '$idMaHH'";
-                                                            $stmt1 = sqlsrv_query($conn, $sql1);
-                                                            if($stmt1==true) {
-                                                                while($rows = sqlsrv_fetch_array($stmt1, SQLSRV_FETCH_ASSOC)){
-                                                                    $MaHDN = $rows['MaHDN'];
-                                                                    ?>
-                                                                        <option value="<?php echo $MaHDN; ?>"><?php echo $MaHDN; ?></option>
-                                                                    <?php
-                                                                }
-                                                            }
-                                                        ?>
-                                                    </select>
+                                                    <label class="text-label">Tên hàng hóa hỏng*</label>
+                                                    <div><p style="color:#444;font-size:1.2rem;padding-left:3%;font-weight:bold;"><?php echo $TenHH; ?></p></div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-2 mb-4">
+                                            <div class="col-lg-6 mb-4">
+                                                <div class="form-group">
+                                                    <label class="text-label">Mã hóa đơn nhập*</label>
+                                                    <div><p style="font-size:1.2rem;color:#444;"><?php echo $idMaHDN; ?></p></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Số lượng*</label>
-                                                    <input type="number" name="SoLuong" class="form-control" min="0" required>
+                                                    <input type="number" name="SoLuong" value="<?php echo $SoLuong; ?>" class="form-control" min="0" required>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4 mb-4">
+                                            <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Đơn giá*</label>
                                                     <div class="input-group">
-                                                        <input type="number" name="DonGia" min="0" class="form-control" required>
+                                                        <input type="number" name="DonGia" value="<?php echo $DonGia; ?>" class="form-control" min="0" class="form-control" required>
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">0.00</span>
                                                             <span class="input-group-text">VNĐ</span>
@@ -140,12 +122,13 @@
                                             <div class="col-lg-12 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Ghi chú*</label>
-                                                    <textarea name="GhiChu" class="form-control" cols="30" rows="10"></textarea>
+                                                    <textarea name="GhiChu" class="form-control" cols="30" rows="10"><?php echo $GhiChu; ?></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <input type="hidden" name="MaHH" value="<?php echo $idMaHH; ?>">
-                                                <input type="submit" name="btnSubmit" value="Thêm mới" class="btn btn-primary mb-2">
+                                                <input type="hidden" name="MaHDN" value="<?php echo $idMaHDN; ?>">
+                                                <input type="submit" name="btnSubmit" value="Cập nhật" class="btn btn-primary mb-2">
                                                 <a href="./addExportInvoice.php" class="btn btn-primary mb-2">Hoàn tất thêm mới</a>
                                             </div>
                                         </div>
@@ -170,15 +153,15 @@
         $SoLuong = $_POST['SoLuong'];
         $DonGia = $_POST['DonGia'];
         $GhiChu = $_POST['GhiChu'];
-        $sql = "{call sp_insert_ct_HOA_DON_XUAT('$MaHDX', '$MaHDN', '$MaHH', '$SoLuong', '$DonGia', N'$GhiChu')}";
+        $sql = "{call sp_update_ct_HOA_DON_XUAT('$MaHDX', '$MaHDN', '$MaHH', '$SoLuong', '$DonGia', N'$GhiChu')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
-            $_SESSION['add'] = "Thêm mới thành công!";
+            $_SESSION['update'] = "Thêm mới thành công!";
             header('location:'.SITEURL.'addDetailExportInvoice.php?id='.$MaHDX);
         }
         else {
-            $_SESSION['add'] = "Không thêm mới thành công!";
+            $_SESSION['update'] = "Không thêm mới thành công!";
             header('location:'.SITEURL.'addDetailExportInvoice.php?id='.$MaHDX);
         }
         sqlsrv_close($conn);
