@@ -15,8 +15,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <form method="POST" name="formUpdate">
-                                        <table id="example" class="display" style="min-width: 845px">
+                                    <form method="POST" id="formUpdateShipment">
+                                        <table id="example" class="display" style="min-width: 845px" data-url="<?php echo SITEURL; ?>updateShipment.php">
                                             <thead>
                                                 <tr>
                                                     <th>Mã hóa đơn</th>
@@ -49,7 +49,7 @@
                                                         <td><?php echo $TenHH; ?></td>
                                                         <td><?php echo $SoLuong; ?></td>
                                                         <td>
-                                                            <select class="custom-select mr-sm-2" name="ViTri" onchange="formUpdate.submit();">
+                                                            <select class="custom-select mr-sm-2" id="ViTri" name="ViTri">
                                                                 <option <?php if($ViTri="kho 1"){echo 'selected';} ?> value="kho 1">Kho 1</option>
                                                                 <option <?php if($ViTri="kho 2"){echo 'selected';} ?> value="kho 2">Kho 2</option>
                                                                 <option <?php if($ViTri="kho 3"){echo 'selected';} ?> value="kho 3">Kho 3</option>
@@ -57,17 +57,16 @@
                                                         </td>
                                                             <td>
                                                                 <span>
-                                                                    <!-- <a href="" class="mr-4" data-toggle="tooltip"
+                                                                    <!-- <a href="" id="btnUpdateShipment" data-MaHDN="<?php echo $MaHDN; ?>" data-MaHH="<?php echo $MaHH; ?>" class="mr-4" data-toggle="tooltip"
                                                                         data-placement="top" title="Sửa"><i
                                                                             class="fa fa-pencil color-muted"></i></a> -->
+                                                                    <button id="btnUpdateShipment" data-MaHDN="<?php echo $MaHDN; ?>" data-MaHH="<?php echo $MaHH; ?>" class="mr-4">Edit</button>
                                                                     <a href="<?php echo SITEURL; ?>deleteShipment.php?MaHDN=<?php echo $MaHDN; ?>&MaHH=<?php echo $MaHH; ?>" data-toggle="tooltip"
                                                                         data-placement="top" title="Xóa"><i
                                                                             class="fa fa-close color-danger"></i></a>
                                                                 </span>
                                                             </td>
                                                         </tr>
-                                                        <input type="hidden" name="MaHDN" value="<?php echo $MaHDN; ?>">
-                                                        <input type="hidden" name="MaHH" value="<?php echo $MaHH; ?>">
                                                     <?php
                                                 }
                                                 sqlsrv_free_stmt( $stmt);
@@ -96,25 +95,5 @@
             Content body end
         ***********************************-->
 
-<?php
-    if(isset($_POST['submit']))
-    {
-        $ViTri = $_POST['ViTri'];
-        $MaHDN = $_POST['MaHDN'];
-        $MaHH = $_POST['MaHH'];
-        $sql = "{call sp_insert_HANG_HOA_HONG('$MaHDN', '$MaHH', N'$ViTri')}";
-        
-        $stmt = sqlsrv_query($conn, $sql);
-        if( $stmt == TRUE ) {
-            $_SESSION['update'] = "Thêm mới thành công!";
-            header('location:'.SITEURL.'manageDamagedGoods.php');
-        }
-        else {
-            $_SESSION['update'] = "Không thêm mới thành công!";
-            header('location:'.SITEURL.'addDamagedGoods.php');
-        }
-        sqlsrv_close($conn);
-    }
-?>
 <?php include('partials/footer.php'); ?>
 <?php ob_end_flush();?>

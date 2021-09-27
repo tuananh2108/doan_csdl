@@ -8,28 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="./vendor/owl-carousel/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="./vendor/owl-carousel/css/owl.theme.default.min.css">
-    <link href="./vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
     <!-- Datatable -->
     <link href="./vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <!-- Custom Stylesheet -->
     <link href="./css/style.css" rel="stylesheet">
-    <!-- Daterange picker -->
-    <link href="./vendor/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-    <!-- Clockpicker -->
-    <link href="./vendor/clockpicker/css/bootstrap-clockpicker.min.css" rel="stylesheet">
-    <!-- asColorpicker -->
-    <link href="./vendor/jquery-asColorPicker/css/asColorPicker.min.css" rel="stylesheet">
-    <!-- Material color picker -->
-    <link href="./vendor/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
-    <!-- Form step -->
-    <link href="./vendor/jquery-steps/css/jquery.steps.css" rel="stylesheet">
-    <!-- Pick date -->
-    <link rel="stylesheet" href="./vendor/pickadate/themes/default.css">
-    <link rel="stylesheet" href="./vendor/pickadate/themes/default.date.css">
-
-
 </head>
 
 <body>
