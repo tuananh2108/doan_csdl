@@ -1,14 +1,15 @@
+<?php session_start(); ?>
 <?php ob_start();?>
 <?php include('partials/header.php'); ?>
 <?php
-    $MaHHGET = $_GET['MaHH'];
-    $MaHDNGET = $_GET['MaHDN'];
-    $sql = "SELECT * FROM v_list_HANG_HOA_HONG WHERE MaHDN = '$MaHDNGET' AND MaHH = '$MaHHGET'";
+    $MaHH_GET = $_GET['MaHH'];
+    $MaHDN_GET = $_GET['MaHDN'];
+    $NgayHong_GET = $_GET['NgayHong'];
+    $sql = "SELECT * FROM v_list_HANG_HOA_HONG WHERE MaHDN = '$MaHDN_GET' AND MaHH = '$MaHH_GET' AND NgayHong = '$NgayHong_GET'";
     $stmt = sqlsrv_query($conn, $sql);
     if($stmt==true) {
             $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
             $TenHH = $row['TenHH'];
-            $NgayHong = $row['NgayHong'];
             $SoLuong = $row['SoLuong'];
             $MoTa = $row['MoTa'];
     }
@@ -28,6 +29,14 @@
                             <div class="card-header page-titles">
                                 <h4 class="card-title">Hàng hóa hỏng</h4>
                             </div>
+                            <div style="text-align: center;font-size: 1.1rem;">
+                                <?php
+                                    if(isset($_SESSION['update'])) {
+                                        echo $_SESSION['update'];
+                                        unset($_SESSION['update']);
+                                    }
+                                ?>
+                            </div>
                             <div class="card-body">
                                 <form method="POST" class="step-form-horizontal">
                                     <section>
@@ -41,13 +50,13 @@
                                             <div class="col-lg-3 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Ngày hỏng*</label>
-                                                    <div><p style="font-size:1.2rem;color:#444;"><?php echo $NgayHong->format("d/m/Y H:i:s"); ?></p></div>
+                                                    <div><p style="font-size:1.2rem;color:#444;"><?php echo date("d/m/Y H:i:s", strtotime($NgayHong_GET)); ?></p></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-3 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Thuộc hóa đơn số*</label>
-                                                    <div><p style="color:#444;font-size:1.2rem;"><?php echo $MaHDNGET; ?></p></div>
+                                                    <div><p style="color:#444;font-size:1.2rem;"><?php echo $MaHDN_GET; ?></p></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-2 mb-4">
@@ -63,9 +72,9 @@
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <input type="hidden" name="MaHDN" value="<?php echo $MaHDNGET; ?>">
-                                                <input type="hidden" name="MaHH" value="<?php echo $MaHHGET; ?>">
-                                                <input type="hidden" name="NgayHong" value="<?php echo $NgayHong->format("d/m/Y H:i:s"); ?>">
+                                                <input type="hidden" name="MaHDN" value="<?php echo $MaHDN_GET; ?>">
+                                                <input type="hidden" name="MaHH" value="<?php echo $MaHH_GET; ?>">
+                                                <input type="hidden" name="NgayHong" value="<?php echo $NgayHong_GET; ?>">
                                                 <input type="submit" name="submit" value="Cập nhật" class="btn btn-primary mb-2">
                                             </div>
                                         </div>
@@ -93,12 +102,11 @@
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
-            $_SESSION['update'] = "Cập nhật thành công!";
+            $_SESSION['update'] = "<div class='alert alert-success'>Cập nhật thành công!</div>";
             header('location:'.SITEURL.'manageDamagedGoods.php');
         }
         else {
-            echo "Thất bại Thất bại Thất bại Thất bại Thất bại";
-            $_SESSION['update'] = "Không cập nhật thành công!";
+            $_SESSION['update'] = "<div class='alert alert-danger'>Cập nhật thất bại!</div>";
             header('location:'.SITEURL.'updateDamagedGoods.php?MaHH='.$MaHH.'&MaHDN='.$MaHDN);
         }
         sqlsrv_close($conn);

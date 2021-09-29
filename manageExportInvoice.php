@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php include('partials/header.php'); ?>
 
         <!--**********************************
@@ -8,8 +9,24 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header page-titles">
                                 <h4 class="card-title">Hóa đơn xuất</h4>
+                            </div>
+                            <div style="text-align: center;font-size: 1.1rem;">
+                                <?php
+                                    if(isset($_SESSION['add'])) {
+                                        echo $_SESSION['add'];
+                                        unset($_SESSION['add']);
+                                    }
+                                    if(isset($_SESSION['update'])) {
+                                        echo $_SESSION['update'];
+                                        unset($_SESSION['update']);
+                                    }
+                                    if(isset($_SESSION['delete'])) {
+                                        echo $_SESSION['delete'];
+                                        unset($_SESSION['delete']);
+                                    }
+                                ?>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -32,7 +49,7 @@
                                                     while($rows = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC))
                                                     {
                                                         $MaHDX = $rows['MaHDX'];
-                                                        $NgayXuat = $rows['NgayXuat']->format('d/m/Y');
+                                                        $NgayXuat = $rows['NgayXuat']->format('d/m/Y H:i:s');
                                                         $TinhTrang = $rows['TinhTrang'];
                                                         $GhiChu = $rows['GhiChu'];
                                                         ?>

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php ob_start();?>
 <?php include('partials/header.php'); ?>
 <?php
@@ -26,6 +27,14 @@
                             <div class="card-header page-titles">
                                 <h4 class="card-title">Hóa đơn xuất</h4>
                             </div>
+                            <div style="text-align: center;font-size: 1.1rem;">
+                                <?php
+                                    if(isset($_SESSION['update'])) {
+                                        echo $_SESSION['update'];
+                                        unset($_SESSION['update']);
+                                    }
+                                ?>
+                            </div>
                             <div class="card-body">
                                 <form action="" method="POST" class="step-form-horizontal">
                                     <h4>Cập nhật hóa đơn xuất</h4>
@@ -34,7 +43,7 @@
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Ngày xuất*</label>
-                                                    <input type="date" name="NgayXuat" value="<?php echo $NgayXuat->format('Y-m-d'); ?>" class="form-control">
+                                                    <input type="datetime-local" name="NgayXuat" value="<?php echo $NgayXuat->format('Y-m-d\TH:i:s'); ?>" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
@@ -77,7 +86,7 @@
     if(isset($_POST['submit']))
     {
         $MaHDX = $_GET['id'];
-        $NgayXuat = $_POST['NgayXuat'];
+        $NgayXuat = date('Y-m-d H:i:s', strtotime($_POST['NgayXuat']));
         if(isset($_POST['TinhTrang'])) {
             $TinhTrang = 1;
         }
@@ -85,15 +94,15 @@
             $TinhTrang = $_POST['TinhTrang'];
         }
         $GhiChu = $_POST['GhiChu'];
-        $sql = "{call sp_update_HOA_DON_XUAT('$MaHDX', $NgayXuat, '$TinhTrang', N'$GhiChu')}";
+        $sql = "{call sp_update_HOA_DON_XUAT('$MaHDX', '$NgayXuat', '$TinhTrang', N'$GhiChu')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
-            $_SESSION['update'] = "Cập nhật thành công!";
+            $_SESSION['update'] = "<div class='alert alert-success'>Cập nhật thành công!</div>";
             header('location:'.SITEURL.'manageExportInvoice.php');
         }
         else {
-            $_SESSION['update'] = "Không cập nhật thành công!";
+            $_SESSION['update'] = "<div class='alert alert-danger'>Cập nhật thất bại!</div>";
             header('location:'.SITEURL.'updateExportInvoice.php?id='.$MaHDX);
         }
         sqlsrv_close($conn);

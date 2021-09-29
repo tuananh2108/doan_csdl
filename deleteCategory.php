@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php
     include('./partials/connect.php');
 
@@ -6,11 +7,11 @@
     $stmt = sqlsrv_query($conn, $sql);
 
     if($stmt==true) {
-        $_SESSION['delete'] = "<div>Xóa thành công!</div>";
+        $_SESSION['delete'] = "<div class='alert alert-success'>Xóa thành công!</div>";
         header('location:'.SITEURL.'manageCategory.php');
     }
     else {
-        $_SESSION['delete'] = "<div>Xóa thất bại!</div>";
+        $_SESSION['delete'] = "<div class='alert alert-danger'>Xóa thất bại!</div>";
         header('location:'.SITEURL.'manageCategory.php');
     }
 ?>

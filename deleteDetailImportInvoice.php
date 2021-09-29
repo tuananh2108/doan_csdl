@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include('./partials/connect.php');
 
     $idMaHDN = $_GET['id'];
@@ -7,11 +8,11 @@
     $stmt = sqlsrv_query($conn, $sql);
 
     if($stmt==true) {
-        $_SESSION['delete'] = "<div>Xóa thành công!</div>";
+        $_SESSION['delete'] = "<div class='alert alert-success'>Xóa thành công!</div>";
         header('location:'.SITEURL.'addDetailImportInvoice.php?id='.$idMaHDN);
     }
     else {
-        $_SESSION['delete'] = "<div>Xóa thất bại!</div>";
+        $_SESSION['delete'] = "<div class='alert alert-danger'>Xóa thất bại!</div>";
         header('location:'.SITEURL.'addDetailImportInvoice.php?id='.$idMaHDN);
     }
 ?>

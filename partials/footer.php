@@ -27,28 +27,7 @@
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-    <!-- Query -->
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#btnUpdateShipment').on('click', function(){
-                let url = $('#example').data('url');
-                // let MaHDN = $(this).data('MaHDN');
-                // let MaHH = $(this).data('MaHH');
-                // var ViTri = $('#ViTri').val();
-                console.log(url);
-        
-                // $.ajax({
-                //     url: "updateShipment.php";
-                //     method: "POST",
-                //     data: {MaHDN:MaHDN, MaHH:MaHH, ViTri:ViTri},
-                //     success: function(data){
-                //         alert("Cập nhật thành công!");
-                //     }
-                // });
-            });
-        });
-    </script>
+    
 
     <!-- Required vendors -->
     <script src="./vendor/global/global.min.js"></script>

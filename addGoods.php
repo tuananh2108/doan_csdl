@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php ob_start();?>
 <?php include('partials/header.php'); ?>
 
@@ -11,6 +12,14 @@
                         <div class="card">
                             <div class="card-header page-titles">
                                 <h4 class="card-title">Hàng hóa > Thêm mới</h4>
+                            </div>
+                            <div style="text-align: center;font-size: 1.1rem;">
+                                <?php
+                                    if(isset($_SESSION['add'])) {
+                                        echo $_SESSION['add'];
+                                        unset($_SESSION['add']);
+                                    }
+                                ?>
                             </div>
                             <div class="card-body">
                                 <form action="" Method="POST" class="step-form-horizontal">
@@ -86,11 +95,11 @@
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
-            $_SESSION['add'] = "Thêm mới thành công!";
+            $_SESSION['add'] = "<div class='alert alert-success'>Thêm mới thành công!</div>";
             header('location:'.SITEURL.'manageGoods.php');
         }
         else {
-            $_SESSION['add'] = "Không thêm mới thành công!";
+            $_SESSION['add'] = "<div class='alert alert-success'>Thêm mới thất bại!</div>";
             header('location:'.SITEURL.'addGoods.php');
         }
         sqlsrv_close($conn);

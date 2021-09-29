@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php ob_start();?>
 <?php include('partials/header.php'); ?>
 <?php
@@ -14,6 +15,14 @@
                         <div class="card">
                             <div class="card-header page-titles">
                                 <h4 class="card-title">Hàng hóa hỏng</h4>
+                            </div>
+                            <div style="text-align: center;font-size: 1.1rem;">
+                                <?php
+                                    if(isset($_SESSION['add'])) {
+                                        echo $_SESSION['add'];
+                                        unset($_SESSION['add']);
+                                    }
+                                ?>
                             </div>
                             <div class="card-body">
                                 <form method="POST" name="f1">
@@ -42,7 +51,14 @@
                                         <div class="col-lg-6 mb-4">
                                             <div class="form-group">
                                                 <label class="text-label">Ngày hỏng*</label>
-                                                <div><p style="font-size:1.2rem;color:#444;"><?php echo date("d/m/Y H:i:s"); ?></p></div>
+                                                <div>
+                                                    <p style="font-size:1.2rem;color:#444;">
+                                                        <?php
+                                                            $date = new DateTime("now", new DateTimeZone('Asia/Ho_Chi_Minh') );
+                                                            echo $date->format('d/m/Y H:i:s');
+                                                        ?>
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -109,11 +125,11 @@
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
-            $_SESSION['add'] = "Thêm mới thành công!";
+            $_SESSION['add'] = "<div class='alert alert-success'>Thêm mới thành công!</div>";
             header('location:'.SITEURL.'manageDamagedGoods.php');
         }
         else {
-            $_SESSION['add'] = "Không thêm mới thành công!";
+            $_SESSION['add'] = "<div class='alert alert-danger'>Thêm mới thất bại!</div>";
             header('location:'.SITEURL.'addDamagedGoods.php');
         }
         sqlsrv_close($conn);

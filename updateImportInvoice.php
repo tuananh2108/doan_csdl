@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php ob_start();?>
 <?php include('partials/header.php'); ?>
 <?php
@@ -26,6 +27,14 @@
                         <div class="card">
                             <div class="card-header page-titles">
                                 <h4 class="card-title">Hóa đơn nhập</h4>
+                            </div>
+                            <div style="text-align: center;font-size: 1.1rem;">
+                                <?php
+                                    if(isset($_SESSION['update'])) {
+                                        echo $_SESSION['update'];
+                                        unset($_SESSION['update']);
+                                    }
+                                ?>
                             </div>
                             <div class="card-body">
                                 <form action="" method="POST" class="step-form-horizontal">
@@ -110,12 +119,12 @@
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
-            $_SESSION['add'] = "Thêm mới thành công!";
+            $_SESSION['update'] = "<div class='alert alert-success'>Cập nhật thành công!</div>";
             header('location:'.SITEURL.'addDetailImportInvoice.php?id='.$MaHDN);
         }
         else {
-            $_SESSION['add'] = "Không thêm mới thành công!";
-            header('location:'.SITEURL.'addImportInvoice.php');
+            $_SESSION['update'] = "<div class='alert alert-danger'>Cập nhật thất bại!</div>";
+            header('location:'.SITEURL.'updateImportInvoice.php');
         }
         sqlsrv_close($conn);
     }

@@ -1,5 +1,9 @@
+<?php session_start(); ?>
 <?php ob_start();?>
 <?php include('partials/header.php'); ?>
+<?php
+    $id = $_GET['id'];
+?>
 
         <!--**********************************
             Content body start
@@ -11,6 +15,14 @@
                         <div class="card">
                             <div class="card-header page-titles">
                                 <h4 class="card-title">Hóa đơn nhập > Chi tiết</h4>
+                            </div>
+                            <div style="text-align: center;font-size: 1.1rem;">
+                                <?php
+                                    if(isset($_SESSION['add'])) {
+                                        echo $_SESSION['add'];
+                                        unset($_SESSION['add']);
+                                    }
+                                ?>
                             </div>
                             <div class="card-body">
                                 <h4>Chi tiết hóa đơn nhập</h4>
@@ -30,14 +42,12 @@
                                         </thead>
                                         <tbody>
                                         <?php
-                                            $id = $_GET['id'];
-                                            $sql = "SELECT * FROM v_list_ct_HOA_DON_NHAP WHERE MaHDN = $id";
-                                            $stmt = sqlsrv_query($conn, $sql);
+                                            $sql1 = "SELECT * FROM v_list_ct_HOA_DON_NHAP WHERE MaHDN = $id";
+                                            $stmt1 = sqlsrv_query($conn, $sql1);
                                             $sn = 1;
-                                            if($stmt==true) {
-                                                while($rows1 = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC))
+                                            if($stmt1==true) {
+                                                while($rows1 = sqlsrv_fetch_array( $stmt1, SQLSRV_FETCH_ASSOC))
                                                 {
-                                                    // echo $rows1['HanSuDung']->format('d/m/Y');
                                                     $MaHH1 = $rows1['MaHH'];
                                                     $TenHH1 = $rows1['TenHH'];
                                                     $SoLuong1 = $rows1['SoLuong'];
@@ -73,7 +83,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <form action ="" method="POST" class="step-form-horizontal">
+                                <form method="POST" class="step-form-horizontal">
                                     <section>
                                         <div class="row">
                                             <div class="col-lg-12 mb-4">
@@ -82,12 +92,12 @@
                                                     <div class="input-group">
                                                         <select name="MaHH" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                                                             <?php
-                                                                $sql = "SELECT * FROM v_list_HANG_HOA";
-                                                                $stmt = sqlsrv_query($conn, $sql);
-                                                                if($stmt==true) {
-                                                                    while($rows = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)){
-                                                                        $MaHH2 = $rows['MaHH'];
-                                                                        $TenHH2 = $rows['TenHH'];
+                                                                $sql2 = "SELECT * FROM v_list_HANG_HOA";
+                                                                $stmt2 = sqlsrv_query($conn, $sql2);
+                                                                if($stmt2==true) {
+                                                                    while($rows2 = sqlsrv_fetch_array($stmt2, SQLSRV_FETCH_ASSOC)){
+                                                                        $MaHH2 = $rows2['MaHH'];
+                                                                        $TenHH2 = $rows2['TenHH'];
                                                                         ?>
                                                                             <option value="<?php echo $MaHH2; ?>"><?php echo $TenHH2; ?></option>
                                                                         <?php
@@ -135,8 +145,9 @@
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <input type="submit" name="submit" value="Thêm mới" class="btn btn-primary mb-2">
-                                                <a href="<?php echo SITEURL; ?>addImportInvoice.php" class="btn btn-primary mb-2">Hoàn tất</a>
+                                                <input type="hidden" name="MaHDN" value="<?php echo $id; ?>">
+                                                <input type="submit" name="submit" value="Lưu" class="btn btn-primary mb-2">
+                                                <a href="<?php echo SITEURL; ?>addImportInvoice.php" class="btn btn-primary mb-2">Hoàn tất thêm mới</a>
                                             </div>
                                         </div>
                                     </section>
@@ -154,22 +165,23 @@
 <?php
     if(isset($_POST['submit']))
     {
-        $MaHDN = $_GET['id'];
+        $MaHDN = $_POST['MaHDN'];
         $MaHH = $_POST['MaHH'];
         $SoLuong = $_POST['SoLuong'];
         $DonGia = $_POST['DonGia'];
-        $NgaySanXuat = $_POST['NgaySanXuat'];
-        $HanSuDung = $_POST['HanSuDung'];
+        $NgaySanXuat = date("Y-m-d", strtotime($_POST['NgaySanXuat']));
+        $HanSuDung = date("Y-m-d", strtotime($_POST['HanSuDung']));
         $GhiChu = $_POST['GhiChu'];
+
         $sql = "{call sp_insert_ct_HOA_DON_NHAP('$MaHDN', '$MaHH', '$SoLuong', '$DonGia', '$NgaySanXuat', '$HanSuDung', N'$GhiChu')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
-            $_SESSION['add'] = "Thêm mới thành công!";
+            $_SESSION['add'] = "<div class='alert alert-success'>Thêm mới thành công!</div>";
             header('location:'.SITEURL.'addDetailImportInvoice.php?id='.$MaHDN);
         }
         else {
-            $_SESSION['add'] = "Không thêm mới thành công!";
+            $_SESSION['add'] = "<div class='alert alert-success'>Thêm mới thất bại!</div>";
             header('location:'.SITEURL.'addDetailImportInvoice.php?id='.$MaHDN);
         }
         sqlsrv_close($conn);

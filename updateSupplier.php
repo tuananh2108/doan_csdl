@@ -27,6 +27,14 @@
                             <div class="card-header page-titles">
                                 <h4 class="card-title">Nhà cung cấp > Cập nhật</h4>
                             </div>
+                            <div style="text-align: center;font-size: 1.1rem;">
+                                <?php
+                                    if(isset($_SESSION['update'])) {
+                                        echo $_SESSION['update'];
+                                        unset($_SESSION['update']);
+                                    }
+                                ?>
+                            </div>
                             <div class="card-body">
                                 <form action="" method="POST" class="step-form-horizontal">
                                     <section>
@@ -85,12 +93,12 @@
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
-            $_SESSION['add'] = "Cập nhật thành công!";
+            $_SESSION['update'] = "<div class='alert alert-success'>Cập nhật thành công!</div>";
             header('location:'.SITEURL.'manageSupplier.php');
         }
         else {
-            $_SESSION['add'] = "Không cập nhật thành công!";
-            header('location:'.SITEURL.'addSupplier.php');
+            $_SESSION['update'] = "<div class='alert alert-danger'>Cập nhật thất bại!</div>";
+            header('location:'.SITEURL.'updateSupplier.php');
         }
         sqlsrv_close($conn);
     }

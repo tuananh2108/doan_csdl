@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php include('partials/header.php'); ?>
 
         <!--**********************************
@@ -8,8 +9,24 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header page-titles">
                                 <h4 class="card-title">Hàng hóa hỏng</h4>
+                            </div>
+                            <div style="text-align: center;font-size: 1.1rem;">
+                                <?php
+                                    if(isset($_SESSION['add'])) {
+                                        echo $_SESSION['add'];
+                                        unset($_SESSION['add']);
+                                    }
+                                    if(isset($_SESSION['update'])) {
+                                        echo $_SESSION['update'];
+                                        unset($_SESSION['update']);
+                                    }
+                                    if(isset($_SESSION['delete'])) {
+                                        echo $_SESSION['delete'];
+                                        unset($_SESSION['delete']);
+                                    }
+                                ?>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -54,10 +71,10 @@
                                                             <td><?php echo $MoTa; ?></td>
                                                             <td>
                                                                 <span>
-                                                                    <a href="<?php echo SITEURL; ?>updateDamagedGoods.php?MaHH=<?php echo $MaHH; ?>&MaHDN=<?php echo $MaHDN; ?>" class="mr-4" data-toggle="tooltip"
+                                                                    <a href="<?php echo SITEURL; ?>updateDamagedGoods.php?MaHH=<?php echo $MaHH; ?>&MaHDN=<?php echo $MaHDN; ?>&NgayHong=<?php echo $NgayHong->format('Y-m-d H:i:s'); ?>" class="mr-4" data-toggle="tooltip"
                                                                         data-placement="top" title="Sửa"><i
                                                                             class="fa fa-pencil color-muted"></i></a>
-                                                                    <a href="<?php echo SITEURL; ?>deleteDamagedGoods.php?MaHH=<?php echo $MaHH; ?>&MaHDN=<?php echo $MaHDN; ?>" data-toggle="tooltip"
+                                                                    <a href="<?php echo SITEURL; ?>deleteDamagedGoods.php?MaHH=<?php echo $MaHH; ?>&MaHDN=<?php echo $MaHDN; ?>&NgayHong=<?php echo $NgayHong->format('Y-m-d H:i:s'); ?>" data-toggle="tooltip"
                                                                         data-placement="top" title="Xóa"><i
                                                                             class="fa fa-close color-danger"></i></a>
                                                                 </span>
