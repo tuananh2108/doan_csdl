@@ -14,6 +14,7 @@
             $TenHH = $rows['TenHH'];
             $SoLuong = $rows['SoLuong'];
             $DonGia = number_format($rows['DonGia']);
+            $ThanhTien = number_format($rows['ThanhTien']);
             $GhiChu = $rows['GhiChu'];
             $output .= '<tr>
                             <th scope="row">'.$sn++.'</th>
@@ -21,6 +22,7 @@
                             <td>'.$TenHH.'</td>
                             <td>'.$SoLuong.'</td>
                             <td>'.$DonGia.' VNĐ</td>
+                            <td>'.$ThanhTien.' VNĐ</td>
                             <td>'.$GhiChu.'</td>
                         </tr>
             ';

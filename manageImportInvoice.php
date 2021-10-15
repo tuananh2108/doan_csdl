@@ -39,7 +39,7 @@
                                                     <th>Nhà cung cấp</th>
                                                     <th>Tình trạng</th>
                                                     <th>Ghi chú</th>
-                                                    <th>Thành tiền</th>
+                                                    <th>Tổng thanh toán</th>
                                                     <th>Chức năng</th>
                                                 </tr>
                                             </thead>
@@ -68,7 +68,15 @@
                                                                 <td><?php echo $TenNCC; ?></td>
                                                                 <td><?php if($TinhTrang==0){echo "Chưa thanh toán";}else echo "Đã thanh toán"; ?></td>
                                                                 <td><?php echo $GhiChu; ?></td>
-                                                                <td>1 VNĐ</td>
+                                                                <td>
+                                                                    <?php $sql1 = "SELECT dbo.fnc_tongtien_HOA_DON_XUAT($MaHDN) ThanhTien";
+                                                                        $stmt1 = sqlsrv_query($conn, $sql1);
+                                                                        if($stmt1==true) {
+                                                                                $row = sqlsrv_fetch_array($stmt1, SQLSRV_FETCH_ASSOC);
+                                                                                echo number_format($row['ThanhTien']);
+                                                                            } 
+                                                                        ?> VNĐ
+                                                                </td>
                                                                 <td>
                                                                     <span>
                                                                         <a href="<?php echo SITEURL; ?>updateImportInvoice.php?id=<?php echo $MaHDN; ?>" class="mr-4" data-toggle="tooltip"
@@ -140,6 +148,7 @@
                             <th scope="col">Đơn giá</th>
                             <th scope="col">Ngày sản xuất</th>
                             <th scope="col">Hạn sử dụng</th>
+                            <th scope="col">Thành Tiền</th>
                             <th scope="col">Ghi chú</th>
                         </tr>
                     </thead>

@@ -16,6 +16,7 @@
             $DonGia = number_format($rows['DonGia']);
             $NgaySanXuat = $rows['NgaySanXuat']->format('d/m/Y');
             $HanSuDung = $rows['HanSuDung']->format('d/m/Y');
+            $ThanhTien = number_format($rows['ThanhTien']);
             $GhiChu = $rows['GhiChu'];
             $output .= '<tr>
                             <th scope="row">'.$sn++.'</th>
@@ -25,6 +26,7 @@
                             <td>'.$DonGia.' VNĐ</td>
                             <td>'.$NgaySanXuat.'</td>
                             <td>'.$HanSuDung.'</td>
+                            <td>'.$ThanhTien.' VNĐ</td>
                             <td>'.$GhiChu.'</td>
                         </tr>
             ';
