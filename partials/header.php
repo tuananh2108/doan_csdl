@@ -9,9 +9,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Admin Dashboard</title>
     <!-- Datatable -->
-    <link href="./vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="./vendor/datatables/css/jquery.dataTables.css" rel="stylesheet">
     <!-- Custom Stylesheet -->
     <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/main.css" rel="stylesheet">
 </head>
 
 <body>
@@ -19,13 +20,13 @@
     <!--*******************
         Preloader start
     ********************-->
-    <div id="preloader">
+    <!-- <div id="preloader">
         <div class="sk-three-bounce">
             <div class="sk-child sk-bounce1"></div>
             <div class="sk-child sk-bounce2"></div>
             <div class="sk-child sk-bounce3"></div>
         </div>
-    </div>
+    </div> -->
     <!--*******************
         Preloader end
     ********************-->
