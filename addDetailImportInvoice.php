@@ -92,7 +92,7 @@
                                                     <div class="input-group">
                                                         <select name="MaHH" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                                                             <?php
-                                                                $sql2 = "SELECT * FROM v_list_HANG_HOA";
+                                                                $sql2 = "SELECT MaHH, TenHH FROM v_list_HANG_HOA GROUP BY MaHH, TenHH";
                                                                 $stmt2 = sqlsrv_query($conn, $sql2);
                                                                 if($stmt2==true) {
                                                                     while($rows2 = sqlsrv_fetch_array($stmt2, SQLSRV_FETCH_ASSOC)){

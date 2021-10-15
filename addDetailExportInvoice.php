@@ -89,7 +89,7 @@
                                                     <select class="custom-select mr-sm-2" name="MaHH" onchange="f1.submit();">
                                                         <option value="null">-- Lựa chọn tên hàng hóa --</option>
                                                         <?php
-                                                            $sql = "SELECT * FROM v_list_LO_HANG";
+                                                            $sql = "SELECT MaHH, TenHH FROM v_list_LO_HANG GROUP BY MaHH, TenHH";
                                                             $stmt = sqlsrv_query($conn, $sql);
                                                             if($stmt==true) {
                                                                 while($rows = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)){
