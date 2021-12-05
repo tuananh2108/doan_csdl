@@ -6,7 +6,6 @@
     $sql = "SELECT * FROM v_list_ct_HOA_DON_NHAP WHERE MaHDN = $MaHDN";
     $stmt = sqlsrv_query($conn, $sql);
     $output = '';
-    $sn = 1;
     if($stmt==true) {
         while($rows = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC))
         {
@@ -19,7 +18,6 @@
             $ThanhTien = number_format($rows['ThanhTien']);
             $GhiChu = $rows['GhiChu'];
             $output .= '<tr>
-                            <th scope="row">'.$sn++.'</th>
                             <td>'.$MaHH.'</td>
                             <td>'.$TenHH.'</td>
                             <td>'.$SoLuong.'</td>

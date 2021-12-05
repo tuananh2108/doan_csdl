@@ -69,7 +69,7 @@
                                                                 <td><?php if($TinhTrang==0){echo "Chưa thanh toán";}else echo "Đã thanh toán"; ?></td>
                                                                 <td><?php echo $GhiChu; ?></td>
                                                                 <td>
-                                                                    <?php $sql1 = "SELECT dbo.fnc_tongtien_HOA_DON_XUAT($MaHDN) ThanhTien";
+                                                                    <?php $sql1 = "SELECT dbo.fnc_tongtien_HOA_DON_NHAP($MaHDN) ThanhTien";
                                                                         $stmt1 = sqlsrv_query($conn, $sql1);
                                                                         if($stmt1==true) {
                                                                                 $row = sqlsrv_fetch_array($stmt1, SQLSRV_FETCH_ASSOC);
@@ -77,12 +77,12 @@
                                                                             } 
                                                                         ?> VNĐ
                                                                 </td>
-                                                                <td>
+                                                                <td class="js-link">
                                                                     <span>
                                                                         <a href="<?php echo SITEURL; ?>updateImportInvoice.php?id=<?php echo $MaHDN; ?>" class="mr-4" data-toggle="tooltip"
                                                                             data-placement="top" title="Sửa"><i
                                                                                 class="fa fa-pencil color-muted"></i></a>
-                                                                        <a href="<?php echo SITEURL; ?>deleteImportInvoice.php?id=<?php echo $MaHDN; ?>" data-toggle="tooltip"
+                                                                        <a href="#" class="btn-delete" data-url="<?php echo SITEURL; ?>deleteImportInvoice.php?id=<?php echo $MaHDN; ?>" data-toggle="tooltip"
                                                                             data-placement="top" title="Xóa"><i
                                                                                 class="fa fa-close color-danger"></i></a>
                                                                     </span>
@@ -141,7 +141,6 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Mã hàng hóa</th>
                             <th scope="col">Tên hàng hóa</th>
                             <th scope="col">Số lượng</th>
@@ -162,6 +161,25 @@
     <!--**********************************
         Main wrapper end
     ***********************************-->
+    <div class="modal" tabindex="-1" style="background: rgba(0, 0, 0, 0.3);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thông báo</h5>
+                <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="min-width: 240px">
+                <p>Bạn muốn xóa bản ghi?</p>
+            </div>
+            <div class="modal-footer" style="">
+                <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Đóng</button>
+                <a href="#" id="btn-delete-modal" class="btn btn-danger">Xóa</a>
+            </div>
+            </div>
+        </div>
+    </div>
 
 
     <!--**********************************
@@ -189,13 +207,20 @@
         const modal = document.querySelector('.js-model');
         const modalContainer = document.querySelector('.js-modal-container')
         const modalClose = document.querySelector('.js-modal-close');
-
+        const alink = document.querySelector('.js-link');
+        
+        alink.addEventListener('click', function (event) {
+            event.stopPropagation();
+            this.classList.remove('js-tr-table');
+        });
+        
         for (const seeDetail of seeDetails) {
             seeDetail.addEventListener('click', function (event){
+                alink.classList.remove('js-tr-table');
                 modal.classList.add('open');
             })
         }
-
+        
         function closeDetails() {
             modal.classList.remove('open');
             for (const seeDetail of seeDetails) {
@@ -210,6 +235,7 @@
         modalContainer.addEventListener('click', function (event){
             event.stopPropagation();
         });
+        
     </script>
 
     <!-- Required vendors -->
@@ -236,6 +262,19 @@
     <!-- Form -->
     <script src="./vendor/jquery-steps/build/jquery.steps.min.js"></script>
     <!-- <script src="./vendor/jquery-validation/jquery.validate.min.js"></script> -->
+    <script>
+        $(document).ready(function() {
+            $('.btn-delete').click(function(){
+                let url = $(this).data('url');
+                $('.modal').css('display','flex');
+                $('#btn-delete-modal').attr('href', url);
+            });
+
+            $('.close-modal').click(function(){
+                $('.modal').css('display','none');
+            });
+        });
+    </script>
 
 </body>
 

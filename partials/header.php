@@ -8,11 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Admin Dashboard</title>
+    <!-- Chart -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
     <!-- Datatable -->
     <link href="./vendor/datatables/css/jquery.dataTables.css" rel="stylesheet">
     <!-- Custom Stylesheet -->
-    <link href="./css/style.css" rel="stylesheet">
     <link href="./css/main.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -41,7 +43,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="index.html" class="brand-logo">LOGO</a>
+            <a href="index.php" class="brand-logo">LOGO</a>
 
             <div class="nav-control">
                 <div class="hamburger">
@@ -58,7 +60,7 @@
         ***********************************-->
         <div class="header">
             <div class="header-content">
-                <nav class="navbar navbar-expand">
+                <!-- <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
                             <div class="search_bar dropdown">
@@ -73,7 +75,7 @@
                             </div>
                         </div>
                     </div>
-                </nav>
+                </nav> -->
             </div>
         </div>
         <!--**********************************
@@ -87,7 +89,7 @@
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
                     <li><a class="" href="./index.php" aria-expanded="true"><i
-                                class="icon icon-single-04"></i><span class="nav-text">Trang chủ</span></a>
+                                class="icon icon-home"></i><span class="nav-text">Trang chủ</span></a>
                     </li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-form"></i><span class="nav-text">Quản lý hàng hóa</span></a>

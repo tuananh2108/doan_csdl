@@ -98,7 +98,7 @@
                                                                 <span>
                                                                     <a href="" class="mr-4 btnUpdateShipment" data-mahdn="<?php echo $MaHDN; ?>" data-mahh="<?php echo $MaHH; ?>" 
                                                                         data-toggle="tooltip" data-placement="top" title="Sửa"><i class="fa fa-pencil color-muted"></i></a>
-                                                                    <a href="<?php echo SITEURL; ?>deleteShipment.php?MaHDN=<?php echo $MaHDN; ?>&MaHH=<?php echo $MaHH; ?>" 
+                                                                    <a href="#" class="btn-delete" data-url="<?php echo SITEURL; ?>deleteShipment.php?MaHDN=<?php echo $MaHDN; ?>&MaHH=<?php echo $MaHH; ?>"
                                                                         data-toggle="tooltip" data-placement="top" title="Xóa"><i class="fa fa-close color-danger"></i></a>
                                                                 </span>
                                                             </td>

@@ -71,7 +71,7 @@
                                                                     <a href="<?php echo SITEURL; ?>updateSupplier.php?id=<?php echo $id; ?>" class="mr-4" data-toggle="tooltip"
                                                                         data-placement="top" title="Sửa"><i
                                                                             class="fa fa-pencil color-muted"></i></a>
-                                                                    <a href="<?php echo SITEURL; ?>deleteSupplier.php?id=<?php echo $id; ?>" data-toggle="tooltip"
+                                                                    <a href="#" class="btn-delete" data-url="<?php echo SITEURL; ?>deleteSupplier.php?id=<?php echo $id; ?>" data-toggle="tooltip"
                                                                         data-placement="top" title="Xóa"><i
                                                                             class="fa fa-close color-danger"></i></a>
                                                                 </span>

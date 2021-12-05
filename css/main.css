@@ -65,3 +65,15 @@
         transform: translateY(0);
     }
 }
+
+.form-control-additional input {
+    padding: 0.3rem 0.6rem;
+    color: #454545;
+    border: 1px solid #eaeaea;
+    border-radius: 0.25rem 0.25rem;
+}
+
+.form-control-additional button {
+    padding: 0.27rem;
+    margin-left: 10px;
+}
