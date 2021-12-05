@@ -92,9 +92,9 @@
 
         $tong_slsp = $sl_spdb + $sl_sph + $sl_sptk;
         $chart_data = array(
-            array('label' => 'spdb', 'value' => $sl_spdb),
-            array('label' => 'sph', 'value' => $sl_sph),
-            array('label' => 'sptk', 'value' => $sl_sptk)
+            array('label' => 'Sản phẩm đã bán', 'value' => $sl_spdb*100/$tong_slsp),
+            array('label' => 'Sản phẩm hỏng', 'value' => $sl_sph*100/$tong_slsp),
+            array('label' => 'Sản phẩm tồn kho', 'value' => $sl_sptk*100/$tong_slsp)
         );
 
         return $chart_data;

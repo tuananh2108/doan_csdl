@@ -148,7 +148,7 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                                $sql = "SELECT TOP 10 * FROM v_list_LO_HANG";
+                                                $sql = "SELECT TOP 10 * FROM v_list_LO_HANG ORDER BY ThoiHan ASC";
                                                 $stmt = sqlsrv_query($conn, $sql);
                                                 if($stmt==true) {
                                                     while($rows = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC)) {
@@ -179,7 +179,7 @@
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Biểu đồ sản phẩm</h4>
+                                <h4 class="card-title">Biểu đồ sản phẩm(%)</h4>
                                 <div class="card-action">
                                     <form method="POST">
                                         <div class="dropdown custom-dropdown">

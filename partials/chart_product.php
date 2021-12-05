@@ -12,6 +12,6 @@
         $chart_data = TongSP($conn, $time);
     }
 
-    $chart_data = TongSP($conn, $time);
+    // $chart_data = TongSP($conn, $time);
     echo $data = json_encode($chart_data);
 ?>

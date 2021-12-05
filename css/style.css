@@ -1340,7 +1340,7 @@ pre {
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  color: #BDBDC7; }
+  color: #5C5B53; }
   .table th,
   .table td {
     padding: 0.75rem;
@@ -1432,7 +1432,8 @@ pre {
 .table-info,
 .table-info > th,
 .table-info > td {
-  background-color: #cef7ee; }
+  color: #fff;
+  background-color: #FB9C53; }
 
 .table-info th,
 .table-info td,
@@ -1449,7 +1450,8 @@ pre {
 .table-warning,
 .table-warning > th,
 .table-warning > td {
-  background-color: #ffe7be; }
+  color: #fff;
+  background-color: #FBE143; }
 
 .table-warning th,
 .table-warning td,
@@ -1466,7 +1468,8 @@ pre {
 .table-danger,
 .table-danger > th,
 .table-danger > td {
-  background-color: #ffbebe; }
+  color: #fff;
+  background-color: #FF4550; }
 
 .table-danger th,
 .table-danger td,

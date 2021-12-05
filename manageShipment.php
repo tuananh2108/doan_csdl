@@ -35,6 +35,7 @@
                                                     <th>Tên hàng hóa</th>
                                                     <th>Số lượng</th>
                                                     <th>Vị trí</th>
+                                                    <th>Thời hạn</th>
                                                     <th>Chức năng</th>
                                                 </tr>
                                             </thead>
@@ -55,6 +56,7 @@
                                                     $TenHH = $rows['TenHH'];
                                                     $SoLuong = $rows['SoLuong'];
                                                     $ViTri = $rows['ViTri'];
+                                                    $ThoiHan = $rows['ThoiHan'];
                                                     ?>
                                                         <tr>
                                                         <td><?php echo $MaHDN; ?></td>
@@ -94,6 +96,7 @@
                                                                 ?>
                                                             </select>
                                                         </td>
+                                                            <td class="ThoiHan"><?php echo $ThoiHan; ?></td>
                                                             <td>
                                                                 <span>
                                                                     <a href="" class="mr-4 btnUpdateShipment" data-mahdn="<?php echo $MaHDN; ?>" data-mahh="<?php echo $MaHH; ?>" 
@@ -115,6 +118,7 @@
                                                     <th>Tên hàng hóa</th>
                                                     <th>Số lượng</th>
                                                     <th>Vị trí</th>
+                                                    <th>
                                                     <th>Chức năng</th>
                                                 </tr>
                                             </tfoot>

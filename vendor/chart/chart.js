@@ -50,6 +50,7 @@ $('.btn-chart_filter').click(function () {
 //the product chart
 let chartProduct = new Morris.Donut({
     element: 'morris-product-chart',
+    data: [{"value":"","label":""}]
     // data: [
     //   { label: "Bánh gạo kê", value: 20 },
     //   { label: "Kẹo", value: 10 },
@@ -63,7 +64,6 @@ $.getJSON('http://localhost/doan_csdl/partials/chart_product.php', function (dat
 
 $('#thangtruoc').click(function() {
     let url = $(this).parent().data('url');
-    alert(url);
     $.ajax({
         url: url,
         method: "POST",
