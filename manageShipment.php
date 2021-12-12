@@ -96,7 +96,7 @@
                                                                 ?>
                                                             </select>
                                                         </td>
-                                                            <td class="ThoiHan"><?php echo $ThoiHan; ?></td>
+                                                            <td><?php echo $ThoiHan; ?></td>
                                                             <td>
                                                                 <span>
                                                                     <a href="" class="mr-4 btnUpdateShipment" data-mahdn="<?php echo $MaHDN; ?>" data-mahh="<?php echo $MaHH; ?>" 
