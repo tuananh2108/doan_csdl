@@ -97,21 +97,21 @@
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                         class="icon icon-form"></i><span class="nav-text">Loại hàng hóa</span></a>
                                 <ul aria-expanded="false">
-                                    <li><a href="./manageCategory.php">Xem danh sách loại hàng hóa</a></li>
+                                    <li><a href="./manageCategory.php">Danh sách loại hàng hóa</a></li>
                                     <li><a href="./addCategory.php">Thêm mới</a></li>
                                 </ul>
                             </li>
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                         class="icon icon-form"></i><span class="nav-text">Hàng hóa mới</span></a>
                                 <ul aria-expanded="false">
-                                    <li><a href="./manageGoods.php">Xem danh sách hàng hóa</a></li>
+                                    <li><a href="./manageGoods.php">Danh sách hàng hóa</a></li>
                                     <li><a href="./addGoods.php">Thêm mới</a></li>
                                 </ul>
                             </li>
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                         class="icon icon-form"></i><span class="nav-text">Hàng hóa hỏng</span></a>
                                 <ul aria-expanded="false">
-                                    <li><a href="./manageDamagedGoods.php">Xem danh sách hàng hóa hỏng</a></li>
+                                    <li><a href="./manageDamagedGoods.php">Danh sách hàng hóa hỏng</a></li>
                                     <li><a href="./addDamagedGoods.php">Thêm mới</a></li>
                                 </ul>
                             </li>
@@ -123,14 +123,14 @@
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                         class="icon icon-form"></i><span class="nav-text">Hóa đơn nhập</span></a>
                                 <ul aria-expanded="false">
-                                    <li><a href="./manageImportInvoice.php">Xem danh sách hóa đơn</a></li>
+                                    <li><a href="./manageImportInvoice.php">Danh sách hóa đơn</a></li>
                                     <li><a href="./addImportInvoice.php">Thêm mới</a></li>
                                 </ul>
                             </li>
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                         class="icon icon-form"></i><span class="nav-text">Hóa đơn xuất</span></a>
                                 <ul aria-expanded="false">
-                                    <li><a href="./manageExportInvoice.php">Xem danh sách hóa đơn</a></li>
+                                    <li><a href="./manageExportInvoice.php">Danh sách hóa đơn</a></li>
                                     <li><a href="./addExportInvoice.php">Thêm mới</a></li>
                                 </ul>
                             </li>
@@ -139,7 +139,7 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-form"></i><span class="nav-text">Quản lý nhà cung cấp</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./manageSupplier.php">Xem danh sách nhà cung cấp</a></li>
+                            <li><a href="./manageSupplier.php">Danh sách nhà cung cấp</a></li>
                             <li><a href="./addSupplier.php">Thêm mới</a></li>
                         </ul>
                     </li>

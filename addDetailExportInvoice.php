@@ -152,7 +152,7 @@
                                                     <textarea name="GhiChu" class="form-control" cols="30" rows="10"></textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12 space-row">
                                                 <input type="hidden" name="MaHH" value="<?php echo $idMaHH; ?>">
                                                 <input type="submit" name="btnSubmit" value="Thêm mới" class="btn btn-primary mb-2">
                                                 <a href="./addExportInvoice.php" class="btn btn-primary mb-2">Hoàn tất thêm mới</a>

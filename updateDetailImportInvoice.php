@@ -160,9 +160,9 @@
                                                     <textarea name="GhiChu" class="form-control" cols="30" rows="10"><?php echo $GhiChu; ?></textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12 space-row">
                                                 <input type="submit" name="submit" value="Cập nhật" class="btn btn-primary mb-2">
-                                                <a href="<?php echo SITEURL; ?>addImportInvoice.php" class="btn btn-primary mb-2">Hoàn tất</a>
+                                                <a href="<?php echo SITEURL; ?>updateImportInvoice.php" class="btn btn-primary mb-2">Hoàn tất cập nhật</a>
                                             </div>
                                         </div>
                                     </section>
@@ -192,11 +192,11 @@
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
             $_SESSION['update'] = "<div class='alert alert-success'>Cập nhật thành công!</div>";
-            header('location:'.SITEURL.'addDetailImportInvoice.php?id='.$MaHDN);
+            header('location:'.SITEURL.'updateDetailImportInvoice.php?id='.$MaHDN);
         }
         else {
             $_SESSION['update'] = "<div class='alert alert-danger'>Cập nhật thất bại!</div>";
-            header('location:'.SITEURL.'addDetailImportInvoice.php?id='.$MaHDN);
+            header('location:'.SITEURL.'updateDetailImportInvoice.php?id='.$MaHDN);
         }
         sqlsrv_close($conn);
     }

@@ -63,9 +63,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12 space-row">
                                                 <input type="submit" name="submit" value="Cập nhật" class="btn btn-primary mb-2">
-                                                <a href="<?php echo SITEURL; ?>addDetailExportInvoice.php?id=<?php echo $id; ?>" class="btn btn-primary mb-2">Cập nhật chi tiết</a>
+                                                <a href="<?php echo SITEURL; ?>updateDetailExportInvoice.php?id=<?php echo $id; ?>" class="btn btn-primary mb-2">Cập nhật chi tiết</a>
                                             </div>
                                         </div>
                                     </section>

@@ -120,11 +120,11 @@
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
             $_SESSION['update'] = "<div class='alert alert-success'>Cập nhật thành công!</div>";
-            header('location:'.SITEURL.'addDetailImportInvoice.php?id='.$MaHDN);
+            header('location:'.SITEURL.'updateDetailImportInvoice.php?id='.$MaHDN);
         }
         else {
             $_SESSION['update'] = "<div class='alert alert-danger'>Cập nhật thất bại!</div>";
-            header('location:'.SITEURL.'updateImportInvoice.php');
+            header('location:'.SITEURL.'updateImportInvoice.php?id='.$MaHDN);
         }
         sqlsrv_close($conn);
     }

@@ -78,4 +78,8 @@
     margin-left: 10px;
 }
 
+.space-row {
+    display: flex;
+    justify-content: space-around;
+}
 /* #FF4550, #FC7749, #FFC300, #FBE143 */

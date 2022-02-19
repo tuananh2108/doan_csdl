@@ -134,11 +134,11 @@
                                                     <textarea name="GhiChu" class="form-control" cols="30" rows="10"><?php echo $GhiChu; ?></textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12 space-row">
                                                 <input type="hidden" name="MaHH" value="<?php echo $idMaHH; ?>">
                                                 <input type="hidden" name="MaHDN" value="<?php echo $idMaHDN; ?>">
                                                 <input type="submit" name="btnSubmit" value="Cập nhật" class="btn btn-primary mb-2">
-                                                <a href="./addExportInvoice.php" class="btn btn-primary mb-2">Hoàn tất thêm mới</a>
+                                                <a href="<?php echo SITEURL; ?>updateExportInvoice.php" class="btn btn-primary mb-2">Hoàn tất cập nhật</a>
                                             </div>
                                         </div>
                                     </section>
@@ -167,11 +167,11 @@
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
             $_SESSION['update'] = "<div class='alert alert-success'>Cập nhật thành công!</div>";
-            header('location:'.SITEURL.'addDetailExportInvoice.php?id='.$MaHDX);
+            header('location:'.SITEURL.'updateDetailExportInvoice.php?id='.$MaHDX);
         }
         else {
             $_SESSION['update'] = "<div class='alert alert-danger'>Cập nhật thất bại!</div>";
-            header('location:'.SITEURL.'addDetailExportInvoice.php?id='.$MaHDX);
+            header('location:'.SITEURL.'updateDetailExportInvoice.php?id='.$MaHDX);
         }
         sqlsrv_close($conn);
     }

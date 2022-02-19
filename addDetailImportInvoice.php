@@ -144,7 +144,7 @@
                                                     <textarea name="GhiChu" class="form-control" cols="30" rows="10"></textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12 space-row">
                                                 <input type="hidden" name="MaHDN" value="<?php echo $id; ?>">
                                                 <input type="submit" name="submit" value="Lưu" class="btn btn-primary mb-2">
                                                 <a href="<?php echo SITEURL; ?>addImportInvoice.php" class="btn btn-primary mb-2">Hoàn tất thêm mới</a>

@@ -67,7 +67,7 @@
                                                             <td><?php echo $nameGoods; ?></td>
                                                             <td><?php echo $unitGoods; ?></td>
                                                             <td><?php echo $origin; ?></td>
-                                                            <td><?php echo $priceGoods; ?> VNĐ</td>
+                                                            <td><?php echo number_format($priceGoods); ?> VNĐ</td>
                                                             <td><?php echo $category; ?></td>
                                                             <td>
                                                                 <span>

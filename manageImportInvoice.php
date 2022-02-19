@@ -216,7 +216,7 @@
         
         for (const seeDetail of seeDetails) {
             seeDetail.addEventListener('click', function (event){
-                alink.classList.remove('js-tr-table');
+                // alink.classList.remove('js-tr-table');
                 modal.classList.add('open');
             })
         }
