@@ -37,15 +37,4 @@
         $chart_data = TongLai($conn, $startTime, $endTime);
     }
     echo $data = json_encode($chart_data);
-
-
-    // $time = strtotime("2020-12-11");
-    // $final = date("Y-m-d", strtotime("-7 days", $time));
-    // echo $final;
-    // echo date("h:i:s");
-    // $date = new DateTime("now", new DateTimeZone('Asia/Ho_Chi_Minh'));
-    // echo $date->format('d/m/Y H:i:s').'<br>';
-    // $time = $date->format('Y-m-d H:i:s');
-    // $final = date("d/m/Y H:i:s", strtotime("-24 Hours", strtotime( $time )));
-    // echo $final;
 ?>

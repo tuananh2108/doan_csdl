@@ -33,7 +33,7 @@
                                 ?>
                             </div>
                             <div class="card-body">
-                                <h4>Chi tiết hóa đơn nhập</h4>
+                                <h4>Danh sách sản phẩm</h4>
                                 <div class="table-responsive" style="margin-bottom:20px;">
                                     <table class="table header-border table-hover verticle-middle table-responsive-sm">
                                         <thead>
@@ -94,7 +94,7 @@
                                 <form method="POST" class="step-form-horizontal">
                                     <section>
                                         <div class="row">
-                                            <div class="col-lg-12 mb-4">
+                                            <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label" for="inlineFormCustomSelect">Tên hàng hóa*</label>
                                                     <div class="input-group">
@@ -116,6 +116,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-lg-6 mb-4"></div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label" for="SoLuong">Số lượng*</label>

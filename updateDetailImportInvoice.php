@@ -39,7 +39,7 @@
                                 ?>
                             </div>
                             <div class="card-body">
-                                <h4>Chi tiết hóa đơn nhập</h4>
+                                <h4>Danh sách sản phẩm</h4>
                                 <div class="table-responsive" style="margin-bottom:20px;">
                                     <table class="table header-border table-hover verticle-middle table-responsive-sm">
                                         <thead>

@@ -37,7 +37,7 @@
                             </div>
                             <div class="card-body">
                                 <form action="" method="POST" class="step-form-horizontal">
-                                    <h4>Hóa đơn xuất > Cập nhật</h4>
+                                    <h4>Thông tin hóa đơn xuất</h4>
                                     <section>
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
@@ -91,20 +91,19 @@
             $TinhTrang = 1;
         }
         else {
-            $TinhTrang = $_POST['TinhTrang'];
+            $TinhTrang = 0;
         }
         $GhiChu = $_POST['GhiChu'];
-        $sql = "{call sp_update_HOA_DON_XUAT($MaHDX, $NgayXuat, '$TinhTrang', N'$GhiChu')}";
+        $sql = "{call sp_update_HOA_DON_XUAT($MaHDX, '$NgayXuat', '$TinhTrang', N'$GhiChu')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
             $_SESSION['update'] = "<div class='alert alert-success'>Cập nhật thành công!</div>";
-            header('location:'.SITEURL.'updateExportInvoice.php?id='.$MaHDX);
         }
         else {
             $_SESSION['update'] = "<div class='alert alert-danger'>Cập nhật thất bại!</div>";
-            header('location:'.SITEURL.'updateExportInvoice.php?id='.$MaHDX);
         }
+        header('location:'.SITEURL.'updateExportInvoice.php?id='.$MaHDX);
         sqlsrv_close($conn);
     }
 ?>

@@ -112,7 +112,7 @@
             $TinhTrang = 1;
         }
         else {
-            $TinhTrang = $_POST['TinhTrang'];
+            $TinhTrang = 0;
         }
         $GhiChu = $_POST['GhiChu'];
         $sql = "{call sp_update_HOA_DON_NHAP($MaHDN, '$NgayNhap', $MaNCC, '$TinhTrang', N'$GhiChu')}";
@@ -120,12 +120,11 @@
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
             $_SESSION['update'] = "<div class='alert alert-success'>Cập nhật thành công!</div>";
-            header('location:'.SITEURL.'updateImportInvoice.php?id='.$MaHDN);
         }
         else {
             $_SESSION['update'] = "<div class='alert alert-danger'>Cập nhật thất bại!</div>";
-            header('location:'.SITEURL.'updateImportInvoice.php?id='.$MaHDN);
         }
+        header('location:'.SITEURL.'updateImportInvoice.php?id='.$MaHDN);
         sqlsrv_close($conn);
     }
 ?>

@@ -15,17 +15,22 @@
                 {
                     $NgayXuat = $rows['NgayXuat']->format('d/m/Y');
                     $TienLai = $rows['TienLai'];
+                    $chart_data[] = array(
+                        'Time' => $NgayXuat,
+                        'LaiXuat' => $TienLai
+                    );
                 }
             }
             else {
                 $TienLai = $TienLai;
                 $NgayXuat = $NgayXuat;
+                $chart_data[] = array(
+                    'Time' => $NgayXuat,
+                    'LaiXuat' => $TienLai
+                );
             }
         }
-        $chart_data[] = array(
-            'Time' => $NgayXuat,
-            'LaiXuat' => $TienLai
-        );
+        
         return $chart_data;
     }
 
@@ -44,17 +49,21 @@
                 {
                     $NgayXuat = $rows['NgayXuat']->format('d/m/Y');
                     $TienLai = $rows['TienLai'];
+                    $chart_data[] = array(
+                        'Time' => $NgayXuat,
+                        'LaiXuat' => $TienLai
+                    );
                 }
             }
             else {
                 $TienLai = $TienLai;
                 $NgayXuat = $NgayXuat;
+                $chart_data[] = array(
+                    'Time' => $NgayXuat,
+                    'LaiXuat' => $TienLai
+                );
             }
         }
-        $chart_data[] = array(
-            'Time' => $NgayXuat,
-            'LaiXuat' => $TienLai
-        );
         return $chart_data;
     }
     
