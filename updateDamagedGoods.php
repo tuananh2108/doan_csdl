@@ -50,7 +50,7 @@
                                             <div class="col-lg-3 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Ngày hỏng*</label>
-                                                    <div><p style="font-size:1.2rem;color:#444;"><?php echo date("d/m/Y H:i:s", strtotime($NgayHong_GET)); ?></p></div>
+                                                    <div><p style="font-size:1.2rem;color:#444;"><?php echo date("d/m/Y H:i:s.v", strtotime($NgayHong_GET)); ?></p></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-3 mb-4">
