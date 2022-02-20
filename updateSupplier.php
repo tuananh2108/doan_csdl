@@ -2,7 +2,7 @@
 <?php include('partials/header.php'); ?>
 <?php
     $id = $_GET['id'];
-    $sql = "SELECT * FROM v_list_NHA_CUNG_CAP WHERE MaNCC = '$id'";
+    $sql = "SELECT * FROM v_list_NHA_CUNG_CAP WHERE MaNCC = $id";
     $stmt = sqlsrv_query($conn, $sql);
     if($stmt==true) {
             $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
