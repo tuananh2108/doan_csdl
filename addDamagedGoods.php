@@ -29,8 +29,8 @@
                                     <div class="row">
                                         <div class="col-lg-6 mb-4">
                                             <div class="form-group">
-                                                <label class="text-label">Tên hàng hóa hỏng*</label>
-                                                    <select class="custom-select mr-sm-2" name="MaHH" onchange="f1.submit();">
+                                                <label class="text-label" for="MaHH">Tên hàng hóa hỏng*</label>
+                                                    <select class="custom-select mr-sm-2" name="MaHH" id="MaHH" onchange="f1.submit();" required>
                                                         <option value="null">-- Lựa chọn tên hàng hóa --</option>
                                                         <?php
                                                             $sql = "SELECT * FROM v_list_LO_HANG";
@@ -68,8 +68,8 @@
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Thuộc hóa đơn số*</label>
-                                                    <select class="custom-select mr-sm-2" name="MaHDN">
+                                                    <label class="text-label" for="MaHDN">Thuộc hóa đơn số*</label>
+                                                    <select class="custom-select mr-sm-2" id="MaHDN" name="MaHDN">
                                                         <?php
                                                             $sql1 = "SELECT * FROM v_list_LO_HANG WHERE MaHH = '$idHH'";
                                                             $stmt1 = sqlsrv_query($conn, $sql1);
@@ -87,17 +87,17 @@
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Số lượng*</label>
-                                                    <input type="number" name="SoLuong" class="form-control">
+                                                    <label class="text-label" for="SoLuong">Số lượng*</label>
+                                                    <input type="number" name="SoLuong" min="0" id="SoLuong" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Mô tả*</label>
-                                                    <textarea name="MoTa" cols="30" rows="10" class="form-control"></textarea>
+                                                    <label class="text-label" for="MoTa">Mô tả</label>
+                                                    <textarea name="MoTa" cols="30" rows="10" id="MoTa" class="form-control"></textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12" style="display:flex;justify-content:flex-end;padding:0 50px;">
                                                 <input type="hidden" name="MaHHSubmit" value="<?php echo $idHH; ?>">
                                                 <input type="submit" name="btnSubmit" value="Thêm mới" class="btn btn-primary mb-2">
                                             </div>
@@ -121,7 +121,7 @@
         $MaHDN = $_POST['MaHDN'];
         $SoLuong = $_POST['SoLuong'];
         $MoTa = $_POST['MoTa'];
-        $sql = "{call sp_insert_HANG_HOA_HONG('$MaHDN', '$MaHH', '$SoLuong', N'$MoTa')}";
+        $sql = "{call sp_insert_HANG_HOA_HONG($MaHDN, $MaHH, $SoLuong, N'$MoTa')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {

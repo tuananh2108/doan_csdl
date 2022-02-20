@@ -27,8 +27,8 @@
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Tên loại hàng hóa*</label>
-                                                    <input type="text" name="nameCategory" class="form-control">
+                                                    <label class="text-label" for="nameCategory">Tên loại hàng hóa*</label>
+                                                    <input type="text" name="nameCategory" id="nameCategory" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">

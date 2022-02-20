@@ -3,7 +3,7 @@
     include('./partials/connect.php');
 
     $id = $_GET['id'];
-    $sql = "{call sp_deleteSoft_HOA_DON_NHAP('$id')}";
+    $sql = "{call sp_deleteSoft_HOA_DON_NHAP($id)}";
     $stmt = sqlsrv_query($conn, $sql);
 
     if($stmt==true) {

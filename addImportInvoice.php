@@ -28,7 +28,7 @@
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Nhà cung cấp*</label>
+                                                    <label class="text-label" for="inlineFormCustomSelect">Nhà cung cấp*</label>
                                                         <select name="MaNCC" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                                                             <?php
                                                                 $sql = "SELECT * FROM v_list_NHA_CUNG_CAP";
@@ -46,31 +46,15 @@
                                                         </select>
                                                 </div>
                                             </div>
-                                            <!-- <div class="col-lg-3 mb-4">
-                                                <div class="form-group">
-                                                    <label class="text-label">Ngày Nhập*</label>
-                                                    <input type="date" name="" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 mb-4">
-                                                <div class="form-group">
-                                                    <label class="text-label">Tình trạng*</label>
-                                                    <div class="input-group" style="margin-top:10px;">
-                                                        <input type="checkbox" class="css-control-input mr-2">
-                                                        <span>Đã thanh toán</span>
-                                                    </div>
-                                                </div>
-                                            </div> -->
                                             <div class="col-lg-12 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Ghi chú*</label>
+                                                    <label class="text-label" for="GhiChu">Ghi chú</label>
                                                     <div class="input-group">
-                                                        <!-- <input type="text" name="phoneNumber" class="form-control" required> -->
-                                                        <textarea name="GhiChu" class="form-control" cols="30" rows="10"></textarea>
+                                                        <textarea name="GhiChu" id="GhiChu" class="form-control" cols="30" rows="10"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12" style="display:flex;justify-content:flex-end;padding:0 50px;">
                                                 <input type="submit" name="submit" value="Thêm chi tiết" class="btn btn-primary mb-2">
                                             </div>
                                         </div>
@@ -92,7 +76,7 @@
     {
         $MaNCC = $_POST['MaNCC'];
         $GhiChu = $_POST['GhiChu'];
-        $sql = "{call sp_insert_HOA_DON_NHAP('$MaNCC', N'$GhiChu')}";
+        $sql = "{call sp_insert_HOA_DON_NHAP($MaNCC, N'$GhiChu')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {

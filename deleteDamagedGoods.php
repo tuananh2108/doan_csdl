@@ -5,7 +5,7 @@
     $MaHH = $_GET['MaHH'];
     $MaHDN = $_GET['MaHDN'];
     $NgayHong = $_GET['NgayHong'];
-    $sql = "{call sp_delete_HANG_HOA_HONG('$NgayHong', '$MaHDN', '$MaHH')}";
+    $sql = "{call sp_delete_HANG_HOA_HONG('$NgayHong', $MaHDN, $MaHH)}";
     $stmt = sqlsrv_query($conn, $sql);
 
     if($stmt==true) {

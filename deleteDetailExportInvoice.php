@@ -5,7 +5,7 @@
     $MaHDX = $_GET['id'];
     $MaHDN = $_GET['MaHDN'];
     $MaHH = $_GET['MaHH'];
-    $sql = "{call sp_deleteSoft_ct_HOA_DON_XUAT('$MaHDX', '$MaHDN', '$MaHH')}";
+    $sql = "{call sp_deleteSoft_ct_HOA_DON_XUAT($MaHDX, $MaHDN, $MaHH)}";
     $stmt = sqlsrv_query($conn, $sql);
 
     if($stmt==true) {

@@ -43,8 +43,8 @@
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Nhà cung cấp*</label>
-                                                        <select name="MaNCC" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                                    <label class="text-label" for="inlineFormCustomSelect">Nhà cung cấp*</label>
+                                                        <select name="MaNCC" class="custom-select mr-sm-2" id="inlineFormCustomSelect" required>
                                                             <?php
                                                                 $sql1 = "SELECT * FROM v_list_NHA_CUNG_CAP";
                                                                 $stmt1 = sqlsrv_query($conn, $sql1);
@@ -63,30 +63,30 @@
                                             </div>
                                             <div class="col-lg-3 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Ngày Nhập*</label>
-                                                    <input type="date" name="NgayNhap" value="<?php echo $NgayNhap->format("Y-m-d"); ?>" class="form-control">
+                                                    <label class="text-label" for="NgayNhap">Ngày Nhập*</label>
+                                                    <input type="date" name="NgayNhap" id="NgayNhap" value="<?php echo $NgayNhap->format("Y-m-d"); ?>" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-3 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Tình trạng*</label>
+                                                    <label class="text-label" for="TinhTrang">Tình trạng</label>
                                                     <div class="input-group" style="margin-top:10px;">
-                                                        <input <?php if($TinhTrang==1){echo 'checked';} ?> type="checkbox" name="TinhTrang" value="<?php echo $TinhTrang; ?>" class="css-control-input mr-2">
-                                                        <span>Đã thanh toán</span>
+                                                        <input <?php if($TinhTrang==1){echo 'checked';} ?> type="checkbox" name="TinhTrang" id="TinhTrang" value="<?php echo $TinhTrang; ?>" class="css-control-input mr-2">
+                                                        <span>Thanh toán</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Ghi chú*</label>
+                                                    <label class="text-label" for="GhiChu">Ghi chú</label>
                                                     <div class="input-group">
-                                                        <!-- <input type="text" name="phoneNumber" class="form-control" required> -->
-                                                        <textarea name="GhiChu" class="form-control" cols="30" rows="10"><?php echo $GhiChu; ?></textarea>
+                                                        <textarea name="GhiChu" id="GhiChu" class="form-control" cols="30" rows="10"><?php echo $GhiChu; ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
-                                                <input type="submit" name="submit" value="Cập nhật chi tiết" class="btn btn-primary mb-2">
+                                            <div class="col-12" style="display:flex;justify-content:space-between;padding:0 50px;">
+                                                <input type="submit" name="submit" value="Cập nhật" class="btn btn-primary mb-2">
+                                                <a href="<?php echo SITEURL; ?>addDetailImportInvoice.php?id=<?php echo $id; ?>" class="btn btn-primary mb-2">Cập nhật chi tiết</a>
                                             </div>
                                         </div>
                                     </section>
@@ -115,12 +115,12 @@
             $TinhTrang = $_POST['TinhTrang'];
         }
         $GhiChu = $_POST['GhiChu'];
-        $sql = "{call sp_update_HOA_DON_NHAP('$MaHDN', '$NgayNhap', '$MaNCC', '$TinhTrang', N'$GhiChu')}";
+        $sql = "{call sp_update_HOA_DON_NHAP($MaHDN, '$NgayNhap', $MaNCC, '$TinhTrang', N'$GhiChu')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
             $_SESSION['update'] = "<div class='alert alert-success'>Cập nhật thành công!</div>";
-            header('location:'.SITEURL.'updateDetailImportInvoice.php?id='.$MaHDN);
+            header('location:'.SITEURL.'updateImportInvoice.php?id='.$MaHDN);
         }
         else {
             $_SESSION['update'] = "<div class='alert alert-danger'>Cập nhật thất bại!</div>";

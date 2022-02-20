@@ -43,13 +43,13 @@
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Tên hàng hóa*</label>
-                                                    <input type="text" name="nameGoods" value="<?php echo $nameGoods; ?>" class="form-control">
+                                                    <label class="text-label" for="nameGoods">Tên hàng hóa*</label>
+                                                    <input type="text" name="nameGoods" id="nameGoods" value="<?php echo $nameGoods; ?>" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Thuộc loại*</label>
+                                                    <label class="text-label" for="inlineFormCustomSelect">Thuộc loại*</label>
                                                     <select class="custom-select mr-sm-2" name="category" id="inlineFormCustomSelect">
                                                         <?php
                                                             $sql = "SELECT * FROM v_list_LOAI_HANG_HOA";
@@ -69,22 +69,22 @@
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Đơn vị*</label>
-                                                    <input type="text" name="unitGoods" value="<?php echo $unitGoods; ?>" class="form-control">
+                                                    <label class="text-label" for="unitGoods">Đơn vị</label>
+                                                    <input type="text" name="unitGoods" id="unitGoods" value="<?php echo $unitGoods; ?>" class="form-control">
                                                 </div>
                                             </div><div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Đơn giá*</label>
-                                                    <input type="number" name="priceGoods" value="<?php echo $priceGoods; ?>" class="form-control">
+                                                    <label class="text-label" for="priceGoods">Đơn giá</label>
+                                                    <input type="number" name="priceGoods" id="priceGoods" min="0" value="<?php echo $priceGoods; ?>" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 mb-4">
-                                                <div class="form-group">
-                                                    <label class="text-label">Xuất xứ*</label>
-                                                    <input type="text" name="nameOrigin" value="<?php echo $origin; ?>" class="form-control">
+                                                <div class="form-group"></div>
+                                                    <label class="text-label" for="nameOrigin">Xuất xứ</label>
+                                                    <input type="text" name="nameOrigin" id="nameOrigin" value="<?php echo $origin; ?>" class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12" style="display:flex;justify-content:flex-end;padding:0 50px;">
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                                                 <input type="submit" name="submit" value="Cập nhật" id="btnNext" class="btn btn-primary mb-2">
                                             </div>
@@ -109,7 +109,7 @@
         $unitGoods = $_POST['unitGoods'];
         $priceGoods = $_POST['priceGoods'];
         $nameOrigin = $_POST['nameOrigin'];
-        $sql = "{call sp_update_HANG_HOA('$id', N'$nameGoods',N'$unitGoods', N'$nameOrigin', '$priceGoods', '$category')}";
+        $sql = "{call sp_update_HANG_HOA($id, N'$nameGoods',N'$unitGoods', N'$nameOrigin', $priceGoods, $category)}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {

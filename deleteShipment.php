@@ -4,7 +4,7 @@
 
     $MaHDN = $_GET['MaHDN'];
     $MaHH = $_GET['MaHH'];
-    $sql = "{call sp_deleteSoft_LO_HANG('$MaHDN', '$MaHH')}";
+    $sql = "{call sp_deleteSoft_LO_HANG($MaHDN, $MaHH)}";
     $stmt = sqlsrv_query($conn, $sql);
 
     if($stmt==true) {

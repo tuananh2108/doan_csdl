@@ -68,8 +68,8 @@
                                     <div class="stat-text">Tổng doanh thu</div>
                                     <?php
                                         $sql = "SELECT SUM((a.DonGia - b.DonGia)*a.SoLuong) AS TienLai 
-                                                FROM v_list_ct_HOA_DON_XUAT a, v_list_ct_HOA_DON_NHAP b, v_list_HOA_DON_XUAT c
-                                                WHERE a.MaHDN = b.MaHDN AND a.MaHH = b.MaHH AND c.MaHDX = a.MaHDX";
+                                                FROM v_list_ct_HOA_DON_XUAT a, v_list_ct_HOA_DON_NHAP b, v_list_HOA_DON_XUAT c, v_list_HOA_DON_NHAP d
+                                                WHERE a.MaHDN = b.MaHDN AND a.MaHH = b.MaHH AND c.MaHDX = a.MaHDX AND b.MaHDN = d.MaHDN AND c.TinhTrang = 1 AND d.TinhTrang = 1";
                                         $stmt = sqlsrv_query($conn, $sql);
                                         $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
                                         if ($row['TienLai'] !== null) {

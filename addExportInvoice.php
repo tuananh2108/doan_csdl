@@ -26,29 +26,15 @@
                                     <h4>Thông tin hóa đơn xuất</h4>
                                     <section>
                                         <div class="row">
-                                            <!-- <div class="col-lg-6 mb-4">
-                                                <div class="form-group">
-                                                    <label class="text-label">Ngày xuất*</label>
-                                                    <input type="date" name="" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 mb-4">
-                                                <div class="form-group">
-                                                    <label class="text-label">Tình trạng*</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" required>
-                                                    </div>
-                                                </div>
-                                            </div> -->
                                             <div class="col-lg-12 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Ghi chú*</label>
+                                                    <label class="text-label" for="GhiChu">Ghi chú</label>
                                                     <div class="input-group">
-                                                        <textarea name="GhiChu" class="form-control" cols="30" rows="10"></textarea>
+                                                        <textarea name="GhiChu" class="form-control" id="GhiChu" cols="30" rows="10"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12" style="display:flex;justify-content:flex-end;padding:0 50px;">
                                                 <input type="submit" name="submit" value="Thêm chi tiết" class="btn btn-primary mb-2">
                                             </div>
                                         </div>

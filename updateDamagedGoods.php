@@ -27,7 +27,7 @@
                     <div class="col-xl-12 col-xxl-12">
                         <div class="card">
                             <div class="card-header page-titles">
-                                <h4 class="card-title">Hàng hóa hỏng</h4>
+                                <h4 class="card-title">Cập nhật Hàng hóa hỏng</h4>
                             </div>
                             <div style="text-align: center;font-size: 1.1rem;">
                                 <?php
@@ -44,7 +44,7 @@
                                             <div class="col-lg-4 mb-4">
                                                 <div class="form-group">
                                                     <label class="text-label">Tên hàng hóa hỏng*</label>
-                                                    <div><p style="color:#444;font-size:1.2rem;padding-left:3%;font-weight:bold;"><?php echo $TenHH; ?></p></div>
+                                                    <div><p style="color:#444;font-size:1.2rem;font-weight:bold;"><?php echo $TenHH; ?></p></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-3 mb-4">
@@ -61,17 +61,17 @@
                                             </div>
                                             <div class="col-lg-2 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Số lượng*</label>
-                                                    <input type="number" name="SoLuong" min="0" value="<?php echo $SoLuong; ?>" class="form-control">
+                                                    <label class="text-label" for="SoLuong">Số lượng*</label>
+                                                    <input type="number" name="SoLuong" id="SoLuong" min="0" value="<?php echo $SoLuong; ?>" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Mô tả*</label>
-                                                    <textarea name="MoTa" cols="30" rows="10" class="form-control"><?php echo $MoTa; ?></textarea>
+                                                    <label class="text-label" for="MoTa">Mô tả</label>
+                                                    <textarea name="MoTa" id="MoTa" cols="30" rows="10" class="form-control"><?php echo $MoTa; ?></textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12" style="display:flex;justify-content:flex-end;padding:0 50px;">
                                                 <input type="hidden" name="MaHDN" value="<?php echo $MaHDN_GET; ?>">
                                                 <input type="hidden" name="MaHH" value="<?php echo $MaHH_GET; ?>">
                                                 <input type="hidden" name="NgayHong" value="<?php echo $NgayHong_GET; ?>">
@@ -98,7 +98,7 @@
         $NgayHong = $_POST['NgayHong'];
         $SoLuong = $_POST['SoLuong'];
         $MoTa = $_POST['MoTa'];
-        $sql = "{call sp_update_HANG_HOA_HONG('$NgayHong', '$MaHDN', '$MaHH', '$SoLuong', N'$MoTa')}";
+        $sql = "{call sp_update_HANG_HOA_HONG('$NgayHong', $MaHDN, $MaHH, $SoLuong, N'$MoTa')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {

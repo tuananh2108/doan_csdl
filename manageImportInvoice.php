@@ -207,12 +207,14 @@
         const modal = document.querySelector('.js-model');
         const modalContainer = document.querySelector('.js-modal-container')
         const modalClose = document.querySelector('.js-modal-close');
-        const alink = document.querySelector('.js-link');
+        const alinks = document.querySelectorAll('.js-link');
         
-        alink.addEventListener('click', function (event) {
-            event.stopPropagation();
-            this.classList.remove('js-tr-table');
-        });
+        for(const alink of alinks) {
+            alink.addEventListener('click', function (event) {
+                event.stopPropagation();
+                this.classList.remove('js-tr-table');
+            });
+        }
         
         for (const seeDetail of seeDetails) {
             seeDetail.addEventListener('click', function (event){

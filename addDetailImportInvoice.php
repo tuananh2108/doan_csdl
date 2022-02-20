@@ -22,11 +22,19 @@
                                         echo $_SESSION['add'];
                                         unset($_SESSION['add']);
                                     }
+                                    if(isset($_SESSION['update'])) {
+                                        echo $_SESSION['update'];
+                                        unset($_SESSION['update']);
+                                    }
+                                    if(isset($_SESSION['delete'])) {
+                                        echo $_SESSION['delete'];
+                                        unset($_SESSION['delete']);
+                                    }
                                 ?>
                             </div>
                             <div class="card-body">
                                 <h4>Chi tiết hóa đơn nhập</h4>
-                                <div class="table-responsive">
+                                <div class="table-responsive" style="margin-bottom:20px;">
                                     <table class="table header-border table-hover verticle-middle table-responsive-sm">
                                         <thead>
                                             <tr>
@@ -70,8 +78,8 @@
                                                                     <a href="<?php echo SITEURL; ?>updateDetailImportInvoice.php?id=<?php echo $id; ?>&idHH=<?php echo $MaHH1; ?>" class="mr-4" data-toggle="tooltip"
                                                                         data-placement="top" title="Sửa"><i
                                                                             class="fa fa-pencil color-muted"></i></a>
-                                                                    <a href="<?php echo SITEURL; ?>deleteDetailImportInvoice.php?id=<?php echo $id; ?>&idHH=<?php echo $MaHH1; ?>" data-toggle="tooltip"
-                                                                        data-placement="top" title="Xóa"><i
+                                                                    <a href="#" data-url="<?php echo SITEURL; ?>deleteDetailImportInvoice.php?id=<?php echo $id; ?>&idHH=<?php echo $MaHH1; ?>" data-toggle="tooltip"
+                                                                        data-placement="top" title="Xóa" class="btn-delete"><i
                                                                             class="fa fa-close color-danger"></i></a>
                                                                 </span>
                                                             </td>
@@ -88,7 +96,7 @@
                                         <div class="row">
                                             <div class="col-lg-12 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Tên hàng hóa*</label>
+                                                    <label class="text-label" for="inlineFormCustomSelect">Tên hàng hóa*</label>
                                                     <div class="input-group">
                                                         <select name="MaHH" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                                                             <?php
@@ -110,15 +118,15 @@
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Số lượng*</label>
-                                                    <input type="number" name="SoLuong" class="form-control" min="0" required>
+                                                    <label class="text-label" for="SoLuong">Số lượng*</label>
+                                                    <input type="number" name="SoLuong" id="SoLuong" class="form-control" min="0" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Đơn giá*</label>
+                                                    <label class="text-label" for="DonGia">Đơn giá*</label>
                                                     <div class="input-group">
-                                                        <input type="number" name="DonGia" class="form-control" required>
+                                                        <input type="number" name="DonGia" id="DonGia" class="form-control" min="0" required>
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">0.00</span>
                                                             <span class="input-group-text">VNĐ</span>
@@ -128,26 +136,25 @@
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Ngày sản xuất*</label>
-                                                    <input type="date" name="NgaySanXuat" class="form-control">
+                                                    <label class="text-label" for="NgaySanXuat">Ngày sản xuất*</label>
+                                                    <input type="date" name="NgaySanXuat" id="NgaySanXuat" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Hạn sử dụng*</label>
-                                                    <input type="date" name="HanSuDung" class="form-control">
+                                                    <label class="text-label" for="HanSuDung">Hạn sử dụng*</label>
+                                                    <input type="date" name="HanSuDung" id="HanSuDung" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Ghi chú*</label>
+                                                    <label class="text-label">Ghi chú</label>
                                                     <textarea name="GhiChu" class="form-control" cols="30" rows="10"></textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-12 space-row">
+                                            <div class="col-12" style="display:flex;justify-content:flex-end;padding:0 50px;">
                                                 <input type="hidden" name="MaHDN" value="<?php echo $id; ?>">
-                                                <input type="submit" name="submit" value="Lưu" class="btn btn-primary mb-2">
-                                                <a href="<?php echo SITEURL; ?>addImportInvoice.php" class="btn btn-primary mb-2">Hoàn tất thêm mới</a>
+                                                <input type="submit" name="submit" value="Thêm mới" class="btn btn-primary mb-2">
                                             </div>
                                         </div>
                                     </section>
@@ -173,7 +180,7 @@
         $HanSuDung = date("Y-m-d", strtotime($_POST['HanSuDung']));
         $GhiChu = $_POST['GhiChu'];
 
-        $sql = "{call sp_insert_ct_HOA_DON_NHAP('$MaHDN', '$MaHH', '$SoLuong', '$DonGia', '$NgaySanXuat', '$HanSuDung', N'$GhiChu')}";
+        $sql = "{call sp_insert_ct_HOA_DON_NHAP($MaHDN, $MaHH, $SoLuong, $DonGia, '$NgaySanXuat', '$HanSuDung', N'$GhiChu')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {

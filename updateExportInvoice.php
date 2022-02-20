@@ -37,35 +37,35 @@
                             </div>
                             <div class="card-body">
                                 <form action="" method="POST" class="step-form-horizontal">
-                                    <h4>Cập nhật hóa đơn xuất</h4>
+                                    <h4>Hóa đơn xuất > Cập nhật</h4>
                                     <section>
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Ngày xuất*</label>
-                                                    <input type="datetime-local" name="NgayXuat" value="<?php echo $NgayXuat->format('Y-m-d\TH:i:s'); ?>" class="form-control">
+                                                    <label class="text-label" for="NgayXuat">Ngày xuất*</label>
+                                                    <input type="datetime-local" name="NgayXuat" id="NgayXuat" value="<?php echo $NgayXuat->format('Y-m-d\TH:i:s'); ?>" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Tình trạng*</label>
+                                                    <label class="text-label" for="TinhTrang">Tình trạng</label>
                                                     <div class="input-group" style="margin-top:10px;">
-                                                        <input <?php if($TinhTrang==1){echo 'checked';} ?> type="checkbox" name="TinhTrang" value="<?php echo $TinhTrang; ?>" class="css-control-input mr-2">
-                                                        <span>Đã thanh toán</span>
+                                                        <input <?php if($TinhTrang==1){echo 'checked';} ?> type="checkbox" name="TinhTrang" id="TinhTrang" value="<?php echo $TinhTrang; ?>" class="css-control-input mr-2">
+                                                        <span>Thanh toán</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Ghi chú*</label>
+                                                    <label class="text-label" for="GhiChu">Ghi chú</label>
                                                     <div class="input-group">
-                                                        <textarea name="GhiChu" class="form-control" cols="30" rows="10"><?php echo $GhiChu; ?></textarea>
+                                                        <textarea name="GhiChu" id="GhiChu" class="form-control" cols="30" rows="10"><?php echo $GhiChu; ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 space-row">
+                                            <div class="col-12" style="display:flex;justify-content:space-between;padding:0 50px;">
                                                 <input type="submit" name="submit" value="Cập nhật" class="btn btn-primary mb-2">
-                                                <a href="<?php echo SITEURL; ?>updateDetailExportInvoice.php?id=<?php echo $id; ?>" class="btn btn-primary mb-2">Cập nhật chi tiết</a>
+                                                <a href="<?php echo SITEURL; ?>addDetailExportInvoice.php?id=<?php echo $id; ?>" class="btn btn-primary mb-2">Cập nhật chi tiết</a>
                                             </div>
                                         </div>
                                     </section>
@@ -94,12 +94,12 @@
             $TinhTrang = $_POST['TinhTrang'];
         }
         $GhiChu = $_POST['GhiChu'];
-        $sql = "{call sp_update_HOA_DON_XUAT('$MaHDX', '$NgayXuat', '$TinhTrang', N'$GhiChu')}";
+        $sql = "{call sp_update_HOA_DON_XUAT($MaHDX, $NgayXuat, '$TinhTrang', N'$GhiChu')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
             $_SESSION['update'] = "<div class='alert alert-success'>Cập nhật thành công!</div>";
-            header('location:'.SITEURL.'manageExportInvoice.php');
+            header('location:'.SITEURL.'updateExportInvoice.php?id='.$MaHDX);
         }
         else {
             $_SESSION['update'] = "<div class='alert alert-danger'>Cập nhật thất bại!</div>";

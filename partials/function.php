@@ -2,8 +2,8 @@
     include('../partials/connect.php');
     function TongLai($conn, $startTime, $endTime){
         $sql = "SELECT CONVERT(date, c.NgayXuat) AS NgayXuat, SUM((a.DonGia - b.DonGia)*a.SoLuong) AS TienLai 
-                FROM v_list_ct_HOA_DON_XUAT a, v_list_ct_HOA_DON_NHAP b, v_list_HOA_DON_XUAT c
-                WHERE a.MaHDN = b.MaHDN AND a.MaHH = b.MaHH AND c.MaHDX = a.MaHDX AND c.NgayXuat BETWEEN '$startTime' AND '$endTime'
+                FROM v_list_ct_HOA_DON_XUAT a, v_list_ct_HOA_DON_NHAP b, v_list_HOA_DON_XUAT c, v_list_HOA_DON_NHAP d
+                WHERE a.MaHDN = b.MaHDN AND a.MaHH = b.MaHH AND c.MaHDX = a.MaHDX AND b.MaHDN = d.MaHDN AND c.TinhTrang = 1 AND d.TinhTrang = 1 AND c.NgayXuat BETWEEN '$startTime' AND '$endTime'
                 GROUP BY CONVERT(date, c.NgayXuat)";
         $stmt = sqlsrv_query($conn, $sql);
         $TienLai = 0;
@@ -31,8 +31,8 @@
 
     function TongLai2($conn, $time) {
         $sql = "SELECT CONVERT(date, c.NgayXuat) AS NgayXuat, SUM((a.DonGia - b.DonGia)*a.SoLuong) AS TienLai 
-                FROM v_list_ct_HOA_DON_XUAT a, v_list_ct_HOA_DON_NHAP b, v_list_HOA_DON_XUAT c
-                WHERE a.MaHDN = b.MaHDN AND a.MaHH = b.MaHH AND c.MaHDX = a.MaHDX AND MONTH(c.NgayXuat) = MONTH('$time') AND YEAR(c.NgayXuat) = YEAR('$time')
+                FROM v_list_ct_HOA_DON_XUAT a, v_list_ct_HOA_DON_NHAP b, v_list_HOA_DON_XUAT c, v_list_HOA_DON_NHAP d
+                WHERE a.MaHDN = b.MaHDN AND a.MaHH = b.MaHH AND c.MaHDX = a.MaHDX AND b.MaHDN = d.MaHDN AND c.TinhTrang = 1 AND d.TinhTrang = 1 AND MONTH(c.NgayXuat) = MONTH('$time') AND YEAR(c.NgayXuat) = YEAR('$time')
                 GROUP BY CONVERT(date, c.NgayXuat)";
         $stmt = sqlsrv_query($conn, $sql);
         $TienLai = 0;
@@ -91,10 +91,13 @@
         }
 
         $tong_slsp = $sl_spdb + $sl_sph + $sl_sptk;
+        $pt_sl_spdb = number_format((float)$sl_spdb*100/$tong_slsp, 2, '.', '');
+        $pt_sl_sph = number_format((float)$sl_sph*100/$tong_slsp, 2, '.', '');
+        $pt_sl_sptk = 100 - $pt_sl_spdb - $pt_sl_sph;
         $chart_data = array(
-            array('label' => 'Sản phẩm đã bán', 'value' => $sl_spdb*100/$tong_slsp),
-            array('label' => 'Sản phẩm hỏng', 'value' => $sl_sph*100/$tong_slsp),
-            array('label' => 'Sản phẩm tồn kho', 'value' => $sl_sptk*100/$tong_slsp)
+            array('label' => 'Sản phẩm đã bán', 'value' => $pt_sl_spdb),
+            array('label' => 'Sản phẩm hỏng', 'value' => $pt_sl_sph),
+            array('label' => 'Sản phẩm tồn kho', 'value' => $pt_sl_sptk)
         );
 
         return $chart_data;

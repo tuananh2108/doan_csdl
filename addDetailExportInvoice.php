@@ -22,11 +22,19 @@
                                         echo $_SESSION['add'];
                                         unset($_SESSION['add']);
                                     }
+                                    if(isset($_SESSION['update'])) {
+                                        echo $_SESSION['update'];
+                                        unset($_SESSION['update']);
+                                    }
+                                    if(isset($_SESSION['delete'])) {
+                                        echo $_SESSION['delete'];
+                                        unset($_SESSION['delete']);
+                                    }
                                 ?>
                             </div>
                             <div class="card-body">
                                 <h4>Chi tiết hóa đơn xuất</h4>
-                                <div class="table-responsive">
+                                <div class="table-responsive" style="margin-bottom:20px;">
                                     <table class="table header-border table-hover verticle-middle table-responsive-sm">
                                         <thead>
                                             <tr>
@@ -68,8 +76,8 @@
                                                                     <a href="<?php echo SITEURL; ?>updateDetailExportInvoice.php?id=<?php echo $id; ?>&MaHDN=<?php echo $MaHDN1; ?>&MaHH=<?php echo $MaHH1; ?>" class="mr-4" data-toggle="tooltip"
                                                                         data-placement="top" title="Sửa"><i
                                                                             class="fa fa-pencil color-muted"></i></a>
-                                                                    <a href="<?php echo SITEURL; ?>deleteDetailExportInvoice.php?id=<?php echo $id; ?>&MaHDN=<?php echo $MaHDN1; ?>&MaHH=<?php echo $MaHH1; ?>" data-toggle="tooltip"
-                                                                        data-placement="top" title="Xóa"><i
+                                                                    <a href="#" data-url="<?php echo SITEURL; ?>deleteDetailExportInvoice.php?id=<?php echo $id; ?>&MaHDN=<?php echo $MaHDN1; ?>&MaHH=<?php echo $MaHH1; ?>" data-toggle="tooltip"
+                                                                        data-placement="top" title="Xóa" class="btn-delete"><i
                                                                             class="fa fa-close color-danger"></i></a>
                                                                 </span>
                                                             </td>
@@ -85,8 +93,8 @@
                                     <div class="row">
                                         <div class="col-lg-6 mb-4">
                                             <div class="form-group">
-                                                <label class="text-label">Tên hàng hóa hỏng*</label>
-                                                    <select class="custom-select mr-sm-2" name="MaHH" onchange="f1.submit();">
+                                                <label class="text-label" for="MaHH">Tên hàng hóa hỏng*</label>
+                                                    <select class="custom-select mr-sm-2" name="MaHH" id="MaHH" onchange="f1.submit();" required>
                                                         <option value="null">-- Lựa chọn tên hàng hóa --</option>
                                                         <?php
                                                             $sql = "SELECT MaHH, TenHH FROM v_list_LO_HANG GROUP BY MaHH, TenHH";
@@ -111,8 +119,8 @@
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Mã hóa đơn nhập*</label>
-                                                    <select class="custom-select mr-sm-2" name="MaHDN">
+                                                    <label class="text-label" for="MaHDN">Mã hóa đơn nhập*</label>
+                                                    <select class="custom-select mr-sm-2" name="MaHDN" id="MaHDN">
                                                         <?php
                                                             $sql1 = "SELECT * FROM v_list_LO_HANG WHERE MaHH = '$idMaHH'";
                                                             $stmt1 = sqlsrv_query($conn, $sql1);
@@ -130,15 +138,15 @@
                                             </div>
                                             <div class="col-lg-2 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Số lượng*</label>
-                                                    <input type="number" name="SoLuong" class="form-control" min="0" required>
+                                                    <label class="text-label" for="SoLuong">Số lượng*</label>
+                                                    <input type="number" name="SoLuong" id="SoLuong" class="form-control" min="0" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Đơn giá*</label>
+                                                    <label class="text-label" for="DonGia">Đơn giá*</label>
                                                     <div class="input-group">
-                                                        <input type="number" name="DonGia" min="0" class="form-control" required>
+                                                        <input type="number" name="DonGia" id="DonGia" min="0" class="form-control" required>
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">0.00</span>
                                                             <span class="input-group-text">VNĐ</span>
@@ -148,14 +156,13 @@
                                             </div>
                                             <div class="col-lg-12 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Ghi chú*</label>
-                                                    <textarea name="GhiChu" class="form-control" cols="30" rows="10"></textarea>
+                                                    <label class="text-label" for="GhiChu">Ghi chú</label>
+                                                    <textarea name="GhiChu" id="GhiChu" class="form-control" cols="30" rows="10"></textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-12 space-row">
+                                            <div class="col-12" style="display:flex;justify-content:flex-end;padding:0 50px;">
                                                 <input type="hidden" name="MaHH" value="<?php echo $idMaHH; ?>">
                                                 <input type="submit" name="btnSubmit" value="Thêm mới" class="btn btn-primary mb-2">
-                                                <a href="./addExportInvoice.php" class="btn btn-primary mb-2">Hoàn tất thêm mới</a>
                                             </div>
                                         </div>
                                     </section>
@@ -179,7 +186,7 @@
         $SoLuong = $_POST['SoLuong'];
         $DonGia = $_POST['DonGia'];
         $GhiChu = $_POST['GhiChu'];
-        $sql = "{call sp_insert_ct_HOA_DON_XUAT('$MaHDX', '$MaHDN', '$MaHH', '$SoLuong', '$DonGia', N'$GhiChu')}";
+        $sql = "{call sp_insert_ct_HOA_DON_XUAT($MaHDX, $MaHDN, $MaHH, $SoLuong, $DonGia, N'$GhiChu')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {

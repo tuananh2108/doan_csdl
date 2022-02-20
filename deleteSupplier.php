@@ -3,7 +3,7 @@
     include('./partials/connect.php');
 
     $id = $_GET['id'];
-    $sql = "{call sp_deleteSoft_NHA_CUNG_CAP('$id')}";
+    $sql = "{call sp_deleteSoft_NHA_CUNG_CAP($id)}";
     $stmt = sqlsrv_query($conn, $sql);
 
     if($stmt==true) {

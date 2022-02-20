@@ -39,8 +39,8 @@
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Tên loại hàng hóa*</label>
-                                                    <input type="text" name="nameCategory" value="<?php echo $nameCategory; ?>" class="form-control">
+                                                    <label class="text-label" for="nameCategory">Tên loại hàng hóa*</label>
+                                                    <input type="text" name="nameCategory" id="nameCategory" value="<?php echo $nameCategory; ?>" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
@@ -65,7 +65,7 @@
     {
         $id = $_POST['id'];
         $nameCategory = $_POST['nameCategory'];
-        $sql = "{call sp_update_LOAI_HANG_HOA('$id', N'$nameCategory')}";
+        $sql = "{call sp_update_LOAI_HANG_HOA($id, N'$nameCategory')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {

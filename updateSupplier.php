@@ -41,29 +41,29 @@
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Tên nhà cung cấp*</label>
-                                                    <input type="text" name="nameSupplier" value="<?php echo $nameSupplier; ?>" class="form-control">
+                                                    <label class="text-label" for="nameSupplier">Tên nhà cung cấp*</label>
+                                                    <input type="text" name="nameSupplier" id="nameSupplier" value="<?php echo $nameSupplier; ?>" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Email*</label>
-                                                    <input type="email" name="emailSupplier" value="<?php echo $emailSupplier; ?>" class="form-control">
+                                                    <label class="text-label" for="emailSupplier">Email</label>
+                                                    <input type="email" name="emailSupplier" id="emailSupplier" value="<?php echo $emailSupplier; ?>" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-lg-8 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Địa chỉ*</label>
-                                                    <input type="text" name="addressSupplier" value="<?php echo $addressSupplier; ?>" class="form-control">
+                                                    <label class="text-label" for="addressSupplier">Địa chỉ*</label>
+                                                    <input type="text" name="addressSupplier" id="addressSupplier" value="<?php echo $addressSupplier; ?>" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Số điện thoại*</label>
-                                                    <input type="text" name="phoneNumber" value="<?php echo $phoneNumber; ?>" class="form-control">
+                                                    <label class="text-label" for="phoneNumber">Số điện thoại</label>
+                                                    <input type="text" name="phoneNumber" id="phoneNumber" value="<?php echo $phoneNumber; ?>" class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12" style="display:flex;justify-content:flex-end;padding:0 50px;">
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                                                 <input type="submit" name="submit" value="Cập nhật" class="btn btn-primary mb-2">
                                             </div>
@@ -89,7 +89,7 @@
         $emailSupplier = $_POST['emailSupplier'];
         $addressSupplier = $_POST['addressSupplier'];
         $phoneNumber = $_POST['phoneNumber'];
-        $sql = "{call sp_update_NHA_CUNG_CAP('$id', N'$nameSupplier', N'$addressSupplier', '$emailSupplier', '$phoneNumber')}";
+        $sql = "{call sp_update_NHA_CUNG_CAP($id, N'$nameSupplier', N'$addressSupplier', '$emailSupplier', '$phoneNumber')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
