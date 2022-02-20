@@ -5,7 +5,7 @@
     $MaHH_GET = $_GET['MaHH'];
     $MaHDN_GET = $_GET['MaHDN'];
     $NgayHong_GET = $_GET['NgayHong'];
-    $sql = "SELECT * FROM v_list_HANG_HOA_HONG WHERE MaHDN = '$MaHDN_GET' AND MaHH = '$MaHH_GET' AND NgayHong = '$NgayHong_GET'";
+    $sql = "SELECT * FROM v_list_HANG_HOA_HONG WHERE MaHDN = '$MaHDN_GET' AND MaHH = '$MaHH_GET' AND CONVERT(date,NgayHong,121) = '$NgayHong_GET'";
     $stmt = sqlsrv_query($conn, $sql);
     if($stmt==true) {
             $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);

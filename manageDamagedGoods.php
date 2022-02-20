@@ -71,7 +71,7 @@
                                                             <td><?php echo $MoTa; ?></td>
                                                             <td>
                                                                 <span>
-                                                                    <a href="<?php echo SITEURL; ?>updateDamagedGoods.php?MaHH=<?php echo $MaHH; ?>&MaHDN=<?php echo $MaHDN; ?>&NgayHong=<?php echo $NgayHong->format('Y-m-d H:i:s'); ?>" class="mr-4" data-toggle="tooltip"
+                                                                    <a href="<?php echo SITEURL; ?>updateDamagedGoods.php?MaHH=<?php echo $MaHH; ?>&MaHDN=<?php echo $MaHDN; ?>&NgayHong=<?php echo $NgayHong->format('Y-m-d H:i:s.u'); ?>" class="mr-4" data-toggle="tooltip"
                                                                         data-placement="top" title="Sửa"><i
                                                                             class="fa fa-pencil color-muted"></i></a>
                                                                     <a href="#" class="btn-delete" data-url="<?php echo SITEURL; ?>deleteDamagedGoods.php?MaHH=<?php echo $MaHH; ?>&MaHDN=<?php echo $MaHDN; ?>&NgayHong=<?php echo $NgayHong->format('Y-m-d H:i:s'); ?>" data-toggle="tooltip"
