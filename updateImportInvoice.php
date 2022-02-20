@@ -115,7 +115,7 @@
             $TinhTrang = $_POST['TinhTrang'];
         }
         $GhiChu = $_POST['GhiChu'];
-        $sql = "{call sp_update_HOA_DON_NHAP($MaHDN, '$NgayNhap', $MaNCC, '$TinhTrang', N'$GhiChu')}";
+        $sql = "{call sp_update_HOA_DON_NHAP($MaHDN, '$NgayNhap', $MaNCC, $TinhTrang, N'$GhiChu')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {

@@ -71,7 +71,7 @@
                                                     <label class="text-label" for="MaHDN">Thuộc hóa đơn số*</label>
                                                     <select class="custom-select mr-sm-2" id="MaHDN" name="MaHDN">
                                                         <?php
-                                                            $sql1 = "SELECT * FROM v_list_LO_HANG WHERE MaHH = '$idHH'";
+                                                            $sql1 = "SELECT * FROM v_list_LO_HANG WHERE MaHH = $idHH";
                                                             $stmt1 = sqlsrv_query($conn, $sql1);
                                                             if($stmt1==true) {
                                                                 while($rows = sqlsrv_fetch_array($stmt1, SQLSRV_FETCH_ASSOC)){

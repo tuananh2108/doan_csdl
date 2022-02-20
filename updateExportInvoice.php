@@ -91,10 +91,10 @@
             $TinhTrang = 1;
         }
         else {
-            $TinhTrang = $_POST['TinhTrang'];
+            $TinhTrang = 0;
         }
         $GhiChu = $_POST['GhiChu'];
-        $sql = "{call sp_update_HOA_DON_XUAT($MaHDX, $NgayXuat, '$TinhTrang', N'$GhiChu')}";
+        $sql = "{call sp_update_HOA_DON_XUAT($MaHDX, '$NgayXuat', '$TinhTrang', N'$GhiChu')}";
         
         $stmt = sqlsrv_query($conn, $sql);
         if( $stmt == TRUE ) {
