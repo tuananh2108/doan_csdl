@@ -74,7 +74,7 @@
                                                                     <a href="<?php echo SITEURL; ?>updateDamagedGoods.php?MaHH=<?php echo $MaHH; ?>&MaHDN=<?php echo $MaHDN; ?>&NgayHong=<?php echo $NgayHong->format('Y-m-d H:i:s.v'); ?>" class="mr-4" data-toggle="tooltip"
                                                                         data-placement="top" title="Sửa"><i
                                                                             class="fa fa-pencil color-muted"></i></a>
-                                                                    <a href="#" class="btn-delete" data-url="<?php echo SITEURL; ?>deleteDamagedGoods.php?MaHH=<?php echo $MaHH; ?>&MaHDN=<?php echo $MaHDN; ?>&NgayHong=<?php echo $NgayHong->format('Y-m-d H:i:s'); ?>" data-toggle="tooltip"
+                                                                    <a href="#" class="btn-delete" data-url="<?php echo SITEURL; ?>deleteDamagedGoods.php?MaHH=<?php echo $MaHH; ?>&MaHDN=<?php echo $MaHDN; ?>&NgayHong=<?php echo $NgayHong->format('Y-m-d H:i:s.v'); ?>" data-toggle="tooltip"
                                                                         data-placement="top" title="Xóa"><i
                                                                             class="fa fa-close color-danger"></i></a>
                                                                 </span>
