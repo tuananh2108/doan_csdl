@@ -137,7 +137,7 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table mb-0">
-                                        <thead>
+                                        <thead class="thead-dark">
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Tên hàng hóa</th>

@@ -42,7 +42,7 @@
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="NgayXuat">Ngày xuất*</label>
+                                                    <label class="text-label" for="NgayXuat">Ngày xuất <span style="color:#f33a58;">*</span></label>
                                                     <input type="datetime-local" name="NgayXuat" id="NgayXuat" value="<?php echo $NgayXuat->format('Y-m-d\TH:i:s'); ?>" class="form-control" required>
                                                 </div>
                                             </div>

@@ -43,13 +43,21 @@
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="nameGoods">Tên hàng hóa*</label>
+                                                    <label class="text-label" for="nameGoods">Tên hàng hóa <span style="color:#f33a58;">*</span></label>
                                                     <input type="text" name="nameGoods" id="nameGoods" value="<?php echo $nameGoods; ?>" class="form-control" required>
+                                                    <span class="form-message">
+                                                        <?php
+                                                            if(isset($_SESSION['error_TenHH'])) {
+                                                                echo $_SESSION['error_TenHH'];
+                                                                unset($_SESSION['error_TenHH']);
+                                                            }
+                                                        ?>
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="inlineFormCustomSelect">Thuộc loại*</label>
+                                                    <label class="text-label" for="inlineFormCustomSelect">Thuộc loại <span style="color:#f33a58;">*</span></label>
                                                     <select class="custom-select mr-sm-2" name="category" id="inlineFormCustomSelect">
                                                         <?php
                                                             $sql = "SELECT * FROM v_list_LOAI_HANG_HOA";
@@ -104,22 +112,45 @@
     if(isset($_POST['submit']))
     {
         $id = $_POST['id'];
-        $nameGoods = $_POST['nameGoods'];
         $category = $_POST['category'];
         $unitGoods = $_POST['unitGoods'];
         $priceGoods = $_POST['priceGoods'];
         $nameOrigin = $_POST['nameOrigin'];
-        $sql = "{call sp_update_HANG_HOA($id, N'$nameGoods',N'$unitGoods', N'$nameOrigin', $priceGoods, $category)}";
-        
-        $stmt = sqlsrv_query($conn, $sql);
-        if( $stmt == TRUE ) {
-            $_SESSION['update'] = "<div class='alert alert-success'>Cập nhật thành công!</div>";
-            header('location:'.SITEURL.'manageGoods.php');
+
+        if(isset($_POST['nameGoods']) && strlen(trim($_POST['nameGoods'])) > 0) {
+            $nameGoods = trim($_POST['nameGoods']);
+
+            $sql_check = "SELECT * FROM v_list_HANG_HOA WHERE TenHH = N'$nameGoods' AND MaHH <> $id";
+            $stmt_check = sqlsrv_query($conn, $sql_check, array());
+            if($stmt_check !== NULL) {
+                $rows = sqlsrv_has_rows($stmt_check);
+                if ($rows === true) {
+                    $_SESSION['error_TenHH'] = "Tên hàng hóa đã tồn tại.";
+                    $_SESSION['update'] = "<div class='alert alert-danger'>Cập nhật thất bại!</div>";
+                    header('location:'.SITEURL.'updateGoods.php?id='.$id);
+                }
+                else {
+                    $sql = "{call sp_update_HANG_HOA($id, N'$nameGoods',N'$unitGoods', N'$nameOrigin', $priceGoods, $category)}";
+                    
+                    $stmt = sqlsrv_query($conn, $sql);
+                    if( $stmt == TRUE ) {
+                        $_SESSION['update'] = "<div class='alert alert-success'>Cập nhật thành công!</div>";
+                        header('location:'.SITEURL.'manageGoods.php');
+                    }
+                    else {
+                        $_SESSION['update'] = "<div class='alert alert-danger'>Cập nhật thất bại!</div>";
+                        header('location:'.SITEURL.'updateGoods.php?id='.$id);
+                    }
+                }
+            }
         }
         else {
+            $_SESSION['error_TenHH'] = "Tên hàng hóa không được để trống hoặc khoảng cách.";
             $_SESSION['update'] = "<div class='alert alert-danger'>Cập nhật thất bại!</div>";
-            header('location:'.SITEURL.'updateGoods.php');
+            header('location:'.SITEURL.'updateGoods.php?id='.$id);
         }
+
+
         sqlsrv_close($conn);
     }
 ?>

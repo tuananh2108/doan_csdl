@@ -1432,8 +1432,7 @@ pre {
 .table-info,
 .table-info > th,
 .table-info > td {
-  color: #fff;
-  background-color: #FB9C53; }
+  background-color: #ff9f1a; }
 
 .table-info th,
 .table-info td,
@@ -1450,8 +1449,7 @@ pre {
 .table-warning,
 .table-warning > th,
 .table-warning > td {
-  color: #fff;
-  background-color: #FBE143; }
+  background-color: #fff200; }
 
 .table-warning th,
 .table-warning td,
@@ -1468,8 +1466,7 @@ pre {
 .table-danger,
 .table-danger > th,
 .table-danger > td {
-  color: #fff;
-  background-color: #FF4550; }
+  background-color: #ff3f34; }
 
 .table-danger th,
 .table-danger td,
@@ -1704,6 +1701,11 @@ textarea.form-control {
 
 .form-group {
   margin-bottom: 1rem; }
+
+.form-message {
+  color: #f33a58;
+  line-height: 1.6rem;
+  padding: 4px 0 0; }
 
 .form-text {
   display: block;

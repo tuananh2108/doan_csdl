@@ -10,10 +10,9 @@
 
     if($stmt==true) {
         $_SESSION['delete'] = "<div class='alert alert-success'>Xóa thành công!</div>";
-        header('location:'.SITEURL.'manageCategory.php');
     }
     else {
         $_SESSION['delete'] = "<div class='alert alert-danger'>Xóa thất bại!</div>";
-        header('location:'.SITEURL.'manageCategory.php');
     }
+    header('location:'.SITEURL.'manageDamagedGoods.php');
 ?>

@@ -91,9 +91,9 @@
                                 </div>
                                 <form method="POST" name="f1">
                                     <div class="row">
-                                        <div class="col-lg-6 mb-4">
+                                        <div class="col-lg-4 mb-4">
                                             <div class="form-group">
-                                                <label class="text-label" for="MaHH">Tên hàng hóa hỏng*</label>
+                                                <label class="text-label" for="MaHH">Tên hàng hóa <span style="color:#f33a58;">*</span></label>
                                                     <select class="custom-select mr-sm-2" name="MaHH" id="MaHH" onchange="f1.submit();" required>
                                                         <option value="null">-- Lựa chọn tên hàng hóa --</option>
                                                         <?php
@@ -117,9 +117,9 @@
                                 <form method="POST">
                                     <section>
                                         <div class="row">
-                                            <div class="col-lg-6 mb-4">
+                                            <div class="col-lg-4 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="MaHDN">Mã hóa đơn nhập*</label>
+                                                    <label class="text-label" for="MaHDN">Mã hóa đơn nhập <span style="color:#f33a58;">*</span></label>
                                                     <select class="custom-select mr-sm-2" name="MaHDN" id="MaHDN">
                                                         <?php
                                                             $sql1 = "SELECT * FROM v_list_LO_HANG WHERE MaHH = '$idMaHH'";
@@ -136,15 +136,15 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-2 mb-4">
+                                            <div class="col-lg-4 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="SoLuong">Số lượng*</label>
+                                                    <label class="text-label" for="SoLuong">Số lượng <span id="setText"></span> <span style="color:#f33a58;">*</span></label>
                                                     <input type="number" name="SoLuong" id="SoLuong" class="form-control" min="0" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="DonGia">Đơn giá*</label>
+                                                    <label class="text-label" for="DonGia">Đơn giá <span style="color:#f33a58;">*</span></label>
                                                     <div class="input-group">
                                                         <input type="number" name="DonGia" id="DonGia" min="0" class="form-control" required>
                                                         <div class="input-group-append">

@@ -41,27 +41,27 @@
                                 <form method="POST" class="step-form-horizontal">
                                     <section>
                                         <div class="row">
-                                            <div class="col-lg-4 mb-4">
+                                            <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Tên hàng hóa hỏng*</label>
+                                                    <label class="text-label">Tên hàng hóa hỏng</label>
                                                     <div><p style="color:#444;font-size:1.2rem;font-weight:bold;"><?php echo $TenHH; ?></p></div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-3 mb-4">
+                                            <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Ngày hỏng*</label>
-                                                    <div><p style="font-size:1.2rem;color:#444;"><?php echo date("d/m/Y H:i:s", strtotime($NgayHong_GET)); ?></p></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 mb-4">
-                                                <div class="form-group">
-                                                    <label class="text-label">Thuộc hóa đơn số*</label>
+                                                    <label class="text-label">Thuộc hóa đơn số</label>
                                                     <div><p style="color:#444;font-size:1.2rem;"><?php echo $MaHDN_GET; ?></p></div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-2 mb-4">
+                                            <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="SoLuong">Số lượng*</label>
+                                                    <label class="text-label">Ngày hỏng</label>
+                                                    <div><p style="font-size:1.2rem;color:#444;"><?php echo date("d/m/Y H:i:s.v", strtotime($NgayHong_GET)); ?></p></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-4">
+                                                <div class="form-group">
+                                                    <label class="text-label" for="SoLuong">Số lượng <span id="setText"></span> <span style="color:#f33a58;">*</span></label>
                                                     <input type="number" name="SoLuong" id="SoLuong" min="0" value="<?php echo $SoLuong; ?>" class="form-control" required>
                                                 </div>
                                             </div>
@@ -72,8 +72,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-12" style="display:flex;justify-content:flex-end;padding:0 50px;">
-                                                <input type="hidden" name="MaHDN" value="<?php echo $MaHDN_GET; ?>">
-                                                <input type="hidden" name="MaHH" value="<?php echo $MaHH_GET; ?>">
+                                                <input type="hidden" name="MaHDN" id="MaHDN" value="<?php echo $MaHDN_GET; ?>">
+                                                <input type="hidden" name="MaHH" id="MaHH" value="<?php echo $MaHH_GET; ?>">
                                                 <input type="hidden" name="NgayHong" value="<?php echo $NgayHong_GET; ?>">
                                                 <input type="submit" name="submit" value="Cập nhật" class="btn btn-primary mb-2">
                                             </div>
@@ -98,17 +98,21 @@
         $NgayHong = $_POST['NgayHong'];
         $SoLuong = $_POST['SoLuong'];
         $MoTa = $_POST['MoTa'];
-        $sql = "{call sp_update_HANG_HOA_HONG('$NgayHong', $MaHDN, $MaHH, $SoLuong, N'$MoTa')}";
+
+        if ($rows === true) {
+            $sql = "{call sp_update_HANG_HOA_HONG('$NgayHong', $MaHDN, $MaHH, $SoLuong, N'$MoTa')}";
+            
+            $stmt = sqlsrv_query($conn, $sql);
+            if( $stmt == TRUE ) {
+                $_SESSION['update'] = "<div class='alert alert-success'>Cập nhật thành công!</div>";
+                header('location:'.SITEURL.'manageDamagedGoods.php');
+            }
+            else {
+                $_SESSION['update'] = "<div class='alert alert-danger'>Cập nhật thất bại!</div>";
+                header('location:'.SITEURL.'updateDamagedGoods.php?MaHH='.$MaHH.'&MaHDN='.$MaHDN.'&NgayHong='.$NgayHong);
+            }
+        }
         
-        $stmt = sqlsrv_query($conn, $sql);
-        if( $stmt == TRUE ) {
-            $_SESSION['update'] = "<div class='alert alert-success'>Cập nhật thành công!</div>";
-            header('location:'.SITEURL.'manageDamagedGoods.php');
-        }
-        else {
-            $_SESSION['update'] = "<div class='alert alert-danger'>Cập nhật thất bại!</div>";
-            header('location:'.SITEURL.'updateDamagedGoods.php?MaHH='.$MaHH.'&MaHDN='.$MaHDN);
-        }
         sqlsrv_close($conn);
     }
 ?>

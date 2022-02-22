@@ -88,6 +88,7 @@
                                                                 }
                                                                 else {
                                                                     ?>
+                                                                        <option>Chọn vị trí kho hàng</option>
                                                                         <option value="kho 1">Kho 1</option>
                                                                         <option value="kho 2">Kho 2</option>
                                                                         <option value="kho 3">Kho 3</option>

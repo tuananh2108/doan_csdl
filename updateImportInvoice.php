@@ -43,8 +43,8 @@
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="inlineFormCustomSelect">Nhà cung cấp*</label>
-                                                        <select name="MaNCC" class="custom-select mr-sm-2" id="inlineFormCustomSelect" required>
+                                                    <label class="text-label" for="inlineFormCustomSelect">Nhà cung cấp <span style="color:#f33a58;">*</span></label>
+                                                        <select name="MaNCC" class="custom-select" id="inlineFormCustomSelect" required>
                                                             <?php
                                                                 $sql1 = "SELECT * FROM v_list_NHA_CUNG_CAP";
                                                                 $stmt1 = sqlsrv_query($conn, $sql1);
@@ -63,7 +63,7 @@
                                             </div>
                                             <div class="col-lg-3 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="NgayNhap">Ngày Nhập*</label>
+                                                    <label class="text-label" for="NgayNhap">Ngày Nhập <span style="color:#f33a58;">*</span></label>
                                                     <input type="date" name="NgayNhap" id="NgayNhap" value="<?php echo $NgayNhap->format("Y-m-d"); ?>" class="form-control" required>
                                                 </div>
                                             </div>

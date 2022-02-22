@@ -29,7 +29,7 @@
                                     <div class="row">
                                         <div class="col-lg-6 mb-4">
                                             <div class="form-group">
-                                                <label class="text-label" for="MaHH">Tên hàng hóa hỏng*</label>
+                                                <label class="text-label" for="MaHH">Tên hàng hóa hỏng <span style="color:#f33a58;">*</span></label>
                                                     <select class="custom-select mr-sm-2" name="MaHH" id="MaHH" onchange="f1.submit();" required>
                                                         <option value="null">-- Lựa chọn tên hàng hóa --</option>
                                                         <?php
@@ -50,7 +50,7 @@
                                         </div>
                                         <div class="col-lg-6 mb-4">
                                             <div class="form-group">
-                                                <label class="text-label">Ngày hỏng*</label>
+                                                <label class="text-label">Ngày hỏng</label>
                                                 <div>
                                                     <p style="font-size:1.2rem;color:#444;">
                                                         <?php
@@ -68,7 +68,7 @@
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="MaHDN">Thuộc hóa đơn số*</label>
+                                                    <label class="text-label" for="MaHDN">Thuộc hóa đơn số <span style="color:#f33a58;">*</span></label>
                                                     <select class="custom-select mr-sm-2" id="MaHDN" name="MaHDN">
                                                         <?php
                                                             $sql1 = "SELECT * FROM v_list_LO_HANG WHERE MaHH = $idHH";
@@ -87,7 +87,7 @@
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="SoLuong">Số lượng*</label>
+                                                    <label class="text-label" for="SoLuong">Số lượng <span id="setText"></span> <span style="color:#f33a58;">*</span></label>
                                                     <input type="number" name="SoLuong" min="0" id="SoLuong" class="form-control" required>
                                                 </div>
                                             </div>
@@ -121,6 +121,7 @@
         $MaHDN = $_POST['MaHDN'];
         $SoLuong = $_POST['SoLuong'];
         $MoTa = $_POST['MoTa'];
+
         $sql = "{call sp_insert_HANG_HOA_HONG($MaHDN, $MaHH, $SoLuong, N'$MoTa')}";
         
         $stmt = sqlsrv_query($conn, $sql);
@@ -132,6 +133,7 @@
             $_SESSION['add'] = "<div class='alert alert-danger'>Thêm mới thất bại!</div>";
             header('location:'.SITEURL.'addDamagedGoods.php');
         }
+
         sqlsrv_close($conn);
     }
 ?>

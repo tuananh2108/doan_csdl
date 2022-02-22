@@ -104,7 +104,7 @@
                                         <div class="row">
                                             <div class="col-lg-12 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="MaHH">Tên hàng hóa*</label>
+                                                    <label class="text-label" for="MaHH">Tên hàng hóa <span style="color:#f33a58;">*</span></label>
                                                     <div class="input-group">
                                                         <select name="MaHH" id="MaHH" class="custom-select mr-sm-2" id="inlineFormCustomSelect" required>
                                                             <?php
@@ -126,15 +126,15 @@
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="SoLuong">Số lượng*</label>
-                                                    <input type="number" name="SoLuong" id="SoLuong" value="<?php echo $SoLuong; ?>" class="form-control" min="0" required>
+                                                    <label class="text-label" for="SoLuong2">Số lượng <span style="color:#f33a58;">*</span></label>
+                                                    <input type="number" name="SoLuong" id="SoLuong2" value="<?php echo $SoLuong; ?>" class="form-control" min="0" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="DonGia">Đơn giá*</label>
+                                                    <label class="text-label" for="DonGia2">Đơn giá <span style="color:#f33a58;">*</span></label>
                                                     <div class="input-group">
-                                                        <input type="number" name="DonGia" id="DonGia" value="<?php echo $DonGia; ?>" min="0" class="form-control" required>
+                                                        <input type="number" name="DonGia" id="DonGia2" value="<?php echo $DonGia; ?>" min="0" class="form-control" required>
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">0.00</span>
                                                             <span class="input-group-text">VNĐ</span>
@@ -144,13 +144,13 @@
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="NgaySanXuat">Ngày sản xuất*</label>
+                                                    <label class="text-label" for="NgaySanXuat">Ngày sản xuất <span style="color:#f33a58;">*</span></label>
                                                     <input type="date" name="NgaySanXuat" id="NgaySanXuat" value="<?php echo $NgaySanXuat->format('Y-m-d'); ?>" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="HanSuDung">Hạn sử dụng*</label>
+                                                    <label class="text-label" for="HanSuDung">Hạn sử dụng <span style="color:#f33a58;">*</span></label>
                                                     <input type="date" name="HanSuDung" id="HanSuDung" value="<?php echo $HanSuDung->format('Y-m-d'); ?>" class="form-control" required>
                                                 </div>
                                             </div>

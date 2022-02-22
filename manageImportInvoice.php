@@ -55,12 +55,6 @@
                                                         $TenNCC = $rows['TenNCC'];
                                                         $TinhTrang = $rows['TinhTrang'];
                                                         $GhiChu = $rows['GhiChu'];
-                                                        // $sql1 = "{call fnc_tongtien_HOA_DON_NHAP('$MaHDN')}";
-                                                        // $stmt1 = sqlsrv_query($conn, $sql1);
-                                                        // if($stmt1==true) {
-                                                        //     $row = sqlsrv_fetch_array( $stmt1, SQLSRV_FETCH_ASSOC);
-                                                        //     $ThanhTien = $row['@TongTien'];
-                                                        // }
                                                         ?>
                                                             <tr class="js-tr-table" data-id="<?php echo $MaHDN; ?>">
                                                                 <td><?php echo $MaHDN; ?></td>
@@ -69,7 +63,7 @@
                                                                 <td><?php if($TinhTrang==0){echo "Chưa thanh toán";}else echo "Đã thanh toán"; ?></td>
                                                                 <td><?php echo $GhiChu; ?></td>
                                                                 <td>
-                                                                    <?php $sql1 = "SELECT dbo.fnc_tongtien_HOA_DON_NHAP($MaHDN) ThanhTien";
+                                                                    <?php $sql1 = "SELECT dbo.fnc_tongtien_HOA_DON_NHAP($MaHDN) AS ThanhTien";
                                                                         $stmt1 = sqlsrv_query($conn, $sql1);
                                                                         if($stmt1==true) {
                                                                                 $row = sqlsrv_fetch_array($stmt1, SQLSRV_FETCH_ASSOC);
@@ -78,6 +72,9 @@
                                                                         ?> VNĐ
                                                                 </td>
                                                                 <td class="js-link">
+                                                                <?php 
+                                                                    if($TinhTrang==0){
+                                                                    ?>
                                                                     <span>
                                                                         <a href="<?php echo SITEURL; ?>updateImportInvoice.php?id=<?php echo $MaHDN; ?>" class="mr-4" data-toggle="tooltip"
                                                                             data-placement="top" title="Sửa"><i
@@ -86,6 +83,9 @@
                                                                             data-placement="top" title="Xóa"><i
                                                                                 class="fa fa-close color-danger"></i></a>
                                                                     </span>
+                                                                    <?php
+                                                                }
+                                                                ?>
                                                                 </td>
                                                             </tr>
                                                         <?php

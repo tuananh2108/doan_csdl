@@ -69,14 +69,20 @@
                                                                         ?> VNĐ
                                                                     </td>
                                                                     <td class="js-link">
-                                                                        <span>
-                                                                            <a href="<?php echo SITEURL; ?>updateExportInvoice.php?id=<?php echo $MaHDX; ?>" class="mr-4" data-toggle="tooltip"
-                                                                                data-placement="top" title="Sửa"><i
-                                                                                    class="fa fa-pencil color-muted"></i></a>
-                                                                            <a href="#" class="btn-delete" data-url="<?php echo SITEURL; ?>deleteExportInvoice.php?id=<?php echo $MaHDX; ?>" data-toggle="tooltip"
-                                                                                data-placement="top" title="Xóa"><i
-                                                                                    class="fa fa-close color-danger"></i></a>
-                                                                        </span>
+                                                                        <?php 
+                                                                            if($TinhTrang==0){
+                                                                            ?>
+                                                                            <span>
+                                                                                <a href="<?php echo SITEURL; ?>updateExportInvoice.php?id=<?php echo $MaHDX; ?>" class="mr-4" data-toggle="tooltip"
+                                                                                    data-placement="top" title="Sửa"><i
+                                                                                        class="fa fa-pencil color-muted"></i></a>
+                                                                                <a href="#" class="btn-delete" data-url="<?php echo SITEURL; ?>deleteExportInvoice.php?id=<?php echo $MaHDX; ?>" data-toggle="tooltip"
+                                                                                    data-placement="top" title="Xóa"><i
+                                                                                        class="fa fa-close color-danger"></i></a>
+                                                                            </span>
+                                                                            <?php
+                                                                        }
+                                                                        ?>
                                                                     </td>
                                                                 </tr>
                                                             <?php

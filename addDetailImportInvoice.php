@@ -96,9 +96,10 @@
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="inlineFormCustomSelect">Tên hàng hóa*</label>
+                                                    <label class="text-label" for="MaHH2">Tên hàng hóa <span style="color:#f33a58;">*</span></label>
                                                     <div class="input-group">
-                                                        <select name="MaHH" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                                        <select name="MaHH" class="custom-select" id="MaHH">
+                                                            <option>-- Lựa chọn tên hàng hóa --</option>
                                                             <?php
                                                                 $sql2 = "SELECT MaHH, TenHH FROM v_list_HANG_HOA GROUP BY MaHH, TenHH";
                                                                 $stmt2 = sqlsrv_query($conn, $sql2);
@@ -119,15 +120,15 @@
                                             <div class="col-lg-6 mb-4"></div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="SoLuong">Số lượng*</label>
-                                                    <input type="number" name="SoLuong" id="SoLuong" class="form-control" min="0" required>
+                                                    <label class="text-label" for="SoLuong2">Số lượng <span style="color:#f33a58;">*</span></label>
+                                                    <input type="number" name="SoLuong" id="SoLuong2" class="form-control" min="0" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="DonGia">Đơn giá*</label>
+                                                    <label class="text-label" for="DonGia">Đơn giá <span style="color:#f33a58;">*</span></label>
                                                     <div class="input-group">
-                                                        <input type="number" name="DonGia" id="DonGia" class="form-control" min="0" required>
+                                                        <input type="number" name="DonGia" id="DonGia" min="0" class="form-control" required>
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">0.00</span>
                                                             <span class="input-group-text">VNĐ</span>
@@ -137,13 +138,13 @@
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="NgaySanXuat">Ngày sản xuất*</label>
+                                                    <label class="text-label" for="NgaySanXuat">Ngày sản xuất <span style="color:#f33a58;">*</span></label>
                                                     <input type="date" name="NgaySanXuat" id="NgaySanXuat" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="HanSuDung">Hạn sử dụng*</label>
+                                                    <label class="text-label" for="HanSuDung">Hạn sử dụng <span style="color:#f33a58;">*</span></label>
                                                     <input type="date" name="HanSuDung" id="HanSuDung" class="form-control" required>
                                                 </div>
                                             </div>

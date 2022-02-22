@@ -83,6 +83,47 @@
         });
     </script>
 
+    <script>
+        $(document).ready(function() {
+            let MaHH = $('#MaHH').val();
+            let MaHDN = $('#MaHDN').val();
+            
+            //get qty product
+            $.ajax({
+                url: 'http://localhost/doan_csdl/partials/getQtyProduct.php',
+                method: "POST",
+                data: {MaHH: MaHH, MaHDN: MaHDN},
+                success: function(data){
+                    $('#setText').html('(' + data + ' sản phẩm tồn kho)');
+                    $('#SoLuong').attr({'max' : data});
+                }
+            });
+
+            //get price product for export invoice
+            $.ajax({
+                url: 'http://localhost/doan_csdl/partials/getPriceProduct.php',
+                method: "POST",
+                data: {MaHH: MaHH},
+                success: function(data){
+                    $('#DonGia').attr({'value' : data});
+                }
+            });
+
+            //get price product for inport invoice
+            $('#MaHH').on("change", function(){
+                let MaHH2 = $('select#MaHH option').filter(":selected").val();
+                $.ajax({
+                    url: 'http://localhost/doan_csdl/partials/getPriceProduct.php',
+                    method: "POST",
+                    data: {MaHH: MaHH2},
+                    success: function(data){
+                        $('#DonGia').attr({'value' : data});
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>

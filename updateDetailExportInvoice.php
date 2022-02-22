@@ -100,27 +100,27 @@
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Tên hàng hóa hỏng*</label>
+                                                    <label class="text-label">Tên hàng hóa <span style="color:#f33a58;">*</span></label>
                                                     <div><p style="color:#444;font-size:1.2rem;font-weight:bold;"><?php echo $TenHH; ?></p></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label">Mã hóa đơn nhập*</label>
+                                                    <label class="text-label">Mã hóa đơn nhập <span style="color:#f33a58;">*</span></label>
                                                     <div><p style="font-size:1.2rem;color:#444;"><?php echo $idMaHDN; ?></p></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="SoLuong">Số lượng*</label>
+                                                    <label class="text-label" for="SoLuong">Số lượng <span id="setText"></span> <span style="color:#f33a58;">*</span></label>
                                                     <input type="number" name="SoLuong" id="SoLuong" value="<?php echo $SoLuong; ?>" class="form-control" min="0" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <div class="form-group">
-                                                    <label class="text-label" for="DonGia">Đơn giá*</label>
+                                                    <label class="text-label" for="DonGia2">Đơn giá <span style="color:#f33a58;">*</span></label>
                                                     <div class="input-group">
-                                                        <input type="number" name="DonGia" id="DonGia" value="<?php echo $DonGia; ?>" class="form-control" min="0" class="form-control" required>
+                                                        <input type="number" name="DonGia" id="DonGia2" value="<?php echo $DonGia; ?>" class="form-control" min="0" class="form-control" required>
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">0.00</span>
                                                             <span class="input-group-text">VNĐ</span>
@@ -135,8 +135,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-12" style="display:flex;justify-content:flex-end;padding:0 50px;">
-                                                <input type="hidden" name="MaHH" value="<?php echo $idMaHH; ?>">
-                                                <input type="hidden" name="MaHDN" value="<?php echo $idMaHDN; ?>">
+                                                <input type="hidden" name="MaHH" id="MaHH" value="<?php echo $idMaHH; ?>">
+                                                <input type="hidden" name="MaHDN" id="MaHDN" value="<?php echo $idMaHDN; ?>">
                                                 <input type="submit" name="btnSubmit" value="Cập nhật" class="btn btn-primary mb-2">
                                             </div>
                                         </div>
